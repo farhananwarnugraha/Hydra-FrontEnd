@@ -7,11 +7,19 @@ export class JwtService {
 
   constructor() { }
 
-  getToken():void{
+  getToken():string | null{
     return window.localStorage['token_access'];
   }
 
   setToken(token:string):void{
     window.localStorage['token_access'] = token;
+  }
+
+  isAuthenticated():boolean{
+    return !!this.getToken();
+  }
+
+  removeToken():void{
+    window.localStorage.removeItem('token_access');
   }
 }

@@ -1,0 +1,27 @@
+<div class="bg-light border-right" id="sidebar-wrapper" [ngClass]="{'hidden': showNavbar}">
+  <img [src]="'/assets/book.png'" alt="book" class="img-fluid mx-auto d-block mt-3">
+  <div class="sidebar-heading text-center">Hydra Bootcamp Application</div>
+  <hr>
+  <p class="text-center">Username</p>
+  <p class="text-center custom-text">Role</p>
+  <div class="list-group list-group-flush">
+    <ul class="list-group list-group-flush mt-1">
+      <li class="list-group-item" [routerLink]="['/dashoard']">
+        <i class="bi bi-speedometer"></i>
+        <a [routerLink]="['/dashoard']" class="ms-2">Dashbaoard</a>
+      </li>
+      <li class="list-group-item" [routerLink]="['/candidate']">
+        <i class="bi bi-person-vcard-fill"></i>
+        <a [routerLink]="['/candidate']" class="ms-2">Candidate</a>
+      </li>
+      <li class="list-group-item" [routerLink]="['/bootacamp']">
+        <i class="bi bi-book"></i>
+        <a [routerLink]="['/bootacamp']" class="ms-2">Bootcamp</a>
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-list-check"></i>
+        <a [routerLink]="['/dashoard']" class="ms-2">Evaliation</a>
+      </li>
+    </ul>
+  </div>
+</div>

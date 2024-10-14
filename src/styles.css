@@ -11,3 +11,21 @@ html,body{
   padding: 0;
   margin: 0;
 }
+
+#warapper{
+  display: flex;
+  flex-direction: row;
+}
+
+#sidebar-wrapper{
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+#page-content-wrapper{
+  flex-grow: 1;
+  margin-left: 250px;
+}
