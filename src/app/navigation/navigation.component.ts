@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { DashboardComponent } from "../dashboard/dashboard.component";
+import { AuthService } from '../users/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,13 +11,31 @@ import { DashboardComponent } from "../dashboard/dashboard.component";
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit{
+  isAuthenticated!: boolean;
   showNavbar: boolean = true;
+  username:string | null = null;
+  role:string | null = null;
 
-  constructor(private route: Router){
+  constructor(private route: Router, private authService: AuthService) {
     this.route.events.subscribe(() => {
       this.showNavbar = this.route.url !== '/dashboard';
     })
+  }
+  ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe((result) => (this.isAuthenticated = result));
+    this.authService.currentUser$.subscribe(
+      {
+        next: (user) => {
+          if(user) {
+            this.username = user.username;
+            this.role = user.role
+
+          }
+          else this.username = null;
+        }
+      }
+    )
   }
 }
 

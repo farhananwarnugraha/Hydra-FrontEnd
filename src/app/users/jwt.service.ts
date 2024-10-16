@@ -12,7 +12,7 @@ export class JwtService {
   }
 
   setToken(token:string):void{
-    window.localStorage['token_access'] = token;
+    localStorage.setItem('token_access', token);
   }
 
   isAuthenticated():boolean{

@@ -2,8 +2,8 @@
   <img [src]="'/assets/book.png'" alt="book" class="img-fluid mx-auto d-block mt-3">
   <div class="sidebar-heading text-center">Hydra Bootcamp Application</div>
   <hr>
-  <p class="text-center">Username</p>
-  <p class="text-center custom-text">Role</p>
+  <p class="text-center">{{ username }}</p>
+  <p class="text-center custom-text">{{ role }}</p>
   <div class="list-group list-group-flush">
     <ul class="list-group list-group-flush mt-1">
       <li class="list-group-item" [routerLink]="['/dashoard']">

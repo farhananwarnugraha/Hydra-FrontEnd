@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../users/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,11 +13,16 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
   showNavbar:boolean = true;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthService) {
     // Mendeteksi perubahan rute
     this.router.events.subscribe(() => {
       // Sembunyikan navbar jika pengguna berada di halaman login
       this.showNavbar = this.router.url !== '/dashboard';
     });
+  }
+
+  logOut(){
+    this.authService.purgeAuth();
+    this.router.navigate(['/login']);
   }
 }
