@@ -1,10 +1,11 @@
-import { ApplicationConfig, inject, provideZoneChangeDetection } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, inject, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { JwtService } from './users/jwt.service';
 import { AuthService } from './users/auth.service';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { jwtInterceptor } from './users/jwt.interceptor';
 
 export function initAuth(){
   const jwtService = inject(JwtService);
@@ -15,7 +16,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([jwtInterceptor])),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initAuth,
+      multi: true
+    }
   ]
 };
 
