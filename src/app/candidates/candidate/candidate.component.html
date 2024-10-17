@@ -1,1 +1,12 @@
-<p>candidate works!</p>
+<td>{{ candidate.fullName }}</td>
+<td>{{ candidate.batchBootcamp }}</td>
+<td>{{ candidate.contactCandidate }}</td>
+<td>{{ candidate.domicile }}</td>
+<td class="table-action">
+  <button class="btn btn-warning m-2" [routerLink]="['edit', candidate.candidateId]">
+    <i class="bi bi-pencil-square"></i>
+  </button>
+  <button class="btn btn-danger" (click)="onDelete()">
+    <i class="bi bi-trash3-fill"></i>
+  </button>
+</td>

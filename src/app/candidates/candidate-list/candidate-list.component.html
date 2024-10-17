@@ -1,1 +1,88 @@
-<p>candidate-list works!</p>
+<div class="alert alert-light">
+  <form [formGroup]="formFilter">
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Full Name"
+          aria-label="First name"
+          id="fullName"
+          formControlName="fullName"
+        >
+      </div>
+      <div class="col">
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Batch Bootcam"
+          aria-label="Last name"
+          formControlName="batchBootcamp"
+          min="0"
+        >
+      </div>
+      <div class="col">
+        <button class="btn btn-secondary">Filter</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container">
+  <button class="btn btn-primary">
+    Add Candidate
+  </button>
+</div>
+
+<table class="table table-striped table-hover"
+  app-table-layout
+  [headers]="['Full Name', 'Batch Bootcamp', 'Contact', 'Domicile', 'Action']"
+>
+  <tbody>
+    @for (can of candidates; track $index) {
+      <tr
+       app-candidate [candidate]="can" (deleted)="loadDataCandidate()"></tr>
+    }@empty {
+      @if(isLoading){
+        <tr>
+          <td colspan="5" class="text-center">
+            <div class="spinner-border"></div>
+            <p class="fw-light">Loading...</p>
+          </td>
+        </tr>
+      }
+      @else{
+        <tr>
+          <td class="message-empty" colspan="5">
+            Candidate Not Found
+          </td>
+        </tr>
+      }
+    }
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="5">
+        <div  class="pagination mt-3 custom-style">
+          <ul class="pagination pagination-sm me-4">
+            @for (page of [].constructor(totalPages); track $index; let index = $index) {
+              <li class="page-item">
+                <a
+                class="page-link"
+                [class.active]="formFilter.value.pageNumber === index + 1"
+                [routerLink]="['.']"
+                [queryParams]="{ pageNumber: index + 1 }"
+                queryParamsHandling="merge"
+            >
+              {{ index + 1 }}
+            </a>
+              </li>
+            }
+          </ul>
+          <div class="page-description ms-2 me-4">
+            <span>Page {{ formFilter.value.pageNumber }} of {{ totalPages }}</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
+</table>

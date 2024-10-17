@@ -1,9 +1,3 @@
-export interface ResponseCandidate<T>{
-  message:string
-  status:string
-  data:T
-}
-
 export interface Candidate{
   candidateId: number,
   fullName: string,
