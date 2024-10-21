@@ -1,0 +1,13 @@
+.jumbotron-header{
+  display: flex;
+  /* justify-content: center; */
+  justify-content: space-between;
+}
+
+.jumbotron-text{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+}

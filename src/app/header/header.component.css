@@ -1,6 +1,11 @@
 .bg-body-custom{
-  background-color: wheat;
+  background-color: #98DED9;
 }
-.hidden{
+/* .hidden{
   display: none;
+} */
+
+li a:hover{
+  color: #0B2F9F;
+  text-decoration: underline;
 }
