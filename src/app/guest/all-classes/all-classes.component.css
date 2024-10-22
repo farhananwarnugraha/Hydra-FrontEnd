@@ -1,0 +1,27 @@
+.card-all-clasess{
+  display: flex;
+  flex-direction: row;
+  border: #0B2F9F 2px solid
+}
+
+.card-all-head-classes{
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+
+.btn-find-more-all-class{
+  background-color: #0B2F9F;
+  color: #fff;
+  font-weight: 600;
+}
+
+.horizontal-line-all-classes{
+  width: 150px;
+  height: 5px;
+  background-color: #0B2F9F;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}

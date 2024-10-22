@@ -1,0 +1,15 @@
+.footer{
+  background-color: #98DED9;
+}
+.footer .container{
+  align-items: center;
+  gap: 20px;
+}
+
+.footer .container img{
+  width: 60px;
+}
+
+.foot-text{
+  font-size: 14px;
+}

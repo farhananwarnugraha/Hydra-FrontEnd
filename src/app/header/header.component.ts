@@ -11,15 +11,7 @@ import { AuthService } from '../users/auth.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  showNavbar:boolean = true;
-
-  constructor(private router: Router, private authService: AuthService) {
-    // Mendeteksi perubahan rute
-    this.router.events.subscribe(() => {
-      // Sembunyikan navbar jika pengguna berada di halaman login
-      this.showNavbar = this.router.url !== '/dashboard';
-    });
-  }
+  constructor(private router: Router, private authService: AuthService) {}
 
   logOut(){
     this.authService.purgeAuth();

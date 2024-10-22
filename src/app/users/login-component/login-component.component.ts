@@ -30,7 +30,7 @@ export class LoginComponentComponent {
       } as LoginCredential).subscribe({
         next: (userResponse) => {
           console.log(userResponse);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/candidate']);
         },
         error: (error) => {
           console.error('Login gagal:', error);

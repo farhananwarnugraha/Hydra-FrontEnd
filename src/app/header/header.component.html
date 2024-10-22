@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg bg-body-custom" [ngClass]="{'hidden': showNavbar}">
+  <nav class="navbar navbar-expand-lg bg-body-custom">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="#">
         <img src="/assets/Logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link fw-bold" aria-current="page" [routerLink]="['/dashoard']">Dashbard</a>
+            <a class="nav-link fw-bold" aria-current="page" [routerLink]="['/dashboard']">Dashbard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fw-bold" href="#">Classes</a>
@@ -20,7 +20,7 @@
             <a class="nav-link fw-bold" href="#">Testiomonials</a>
           </li>
         </ul>
-        <button class="btn btn-outline-primary me-2">
+        <button class="btn btn-outline-primary me-2" [routerLink]="['/login']">
           Login
         </button>
         <button class="btn btn-outline-dark" type="submit" (click)="logOut()">

@@ -6,8 +6,8 @@
 
 .jumbotron-text{
   display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
 }

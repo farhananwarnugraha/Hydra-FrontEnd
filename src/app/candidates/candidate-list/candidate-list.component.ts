@@ -7,11 +7,12 @@ import { HttpBackend } from '@angular/common/http';
 import { CandidatesService } from '../candidates.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { debounceTime, distinct, distinctUntilChanged, switchMap } from 'rxjs';
+import { NavigationComponent } from "../../navigation/navigation.component";
 
 @Component({
   selector: 'app-candidate-list',
   standalone: true,
-  imports: [RouterLink,ReactiveFormsModule, TableLayoutComponent, CandidateComponent],
+  imports: [RouterLink, ReactiveFormsModule, TableLayoutComponent, CandidateComponent, NavigationComponent],
   templateUrl: './candidate-list.component.html',
   styleUrl: './candidate-list.component.css'
 })

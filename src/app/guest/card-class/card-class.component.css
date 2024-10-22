@@ -1,0 +1,27 @@
+.horizontal-line{
+  width: 150px;
+  height: 5px;
+  background-color: #98DED9;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.card-clasess{
+  display: flex;
+  flex-direction: row;
+  border: #98DED9 2px solid
+}
+
+.card-head-classes{
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+}
+
+.btn-find-more-class{
+  background-color: #98DED9;
+  color: #000;
+  font-weight: 600;
+}

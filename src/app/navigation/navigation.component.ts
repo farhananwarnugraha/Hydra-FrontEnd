@@ -18,9 +18,6 @@ export class NavigationComponent implements OnInit{
   role:string | null = null;
 
   constructor(private route: Router, private authService: AuthService) {
-    this.route.events.subscribe(() => {
-      this.showNavbar = this.route.url !== '/dashboard';
-    })
   }
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((result) => (this.isAuthenticated = result));
