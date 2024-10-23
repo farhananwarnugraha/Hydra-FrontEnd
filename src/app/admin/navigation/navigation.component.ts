@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { DashboardComponent } from "../dashboard/dashboard.component";
-import { AuthService } from '../users/auth.service';
+import { DashboardComponent } from "../../dashboard/dashboard.component";
+import { AuthService } from '../../users/auth.service';
 
 @Component({
   selector: 'app-navigation',
@@ -13,11 +13,10 @@ import { AuthService } from '../users/auth.service';
 })
 export class NavigationComponent implements OnInit{
   isAuthenticated!: boolean;
-  showNavbar: boolean = true;
   username:string | null = null;
   role:string | null = null;
 
-  constructor(private route: Router, private authService: AuthService) {
+  constructor(private authService: AuthService) {
   }
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((result) => (this.isAuthenticated = result));
@@ -27,7 +26,6 @@ export class NavigationComponent implements OnInit{
           if(user) {
             this.username = user.username;
             this.role = user.role
-
           }
           else this.username = null;
         }

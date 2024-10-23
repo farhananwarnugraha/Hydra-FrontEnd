@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Candidate } from '../candidates.model';
 import { RouterLink } from '@angular/router';
+import { Candidate } from '../../candidates/candidates.model';
 
 @Component({
   selector: 'tr[app-candidate]',
@@ -10,9 +10,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './candidate.component.css'
 })
 export class CandidateComponent {
-  @Input({required: true}) candidate!: Candidate;
-  @Output() deleted = new EventEmitter<void>();
-  onDelete(){
+  @Input({required: true}) candidate!: Candidate
+  @Output() deleted = new EventEmitter<void>()
 
-  }
+  onDelete() {}
 }

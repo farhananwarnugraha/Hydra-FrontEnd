@@ -6,7 +6,7 @@ import { DownBannerComponent } from "../down-banner/down-banner.component";
 import { FooterGuestComponent } from "../footer-guest/footer-guest.component";
 import { AllClassesComponent } from "../all-classes/all-classes.component";
 import { HeaderComponent } from "../../header/header.component";
-import { NavigationComponent } from "../../navigation/navigation.component";
+import { NavigationComponent } from "../../admin/navigation/navigation.component";
 
 @Component({
   selector: 'app-dashboard-guest',
