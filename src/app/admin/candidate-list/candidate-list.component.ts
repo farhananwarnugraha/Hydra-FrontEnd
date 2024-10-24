@@ -30,7 +30,7 @@ export class CandidateListComponent implements OnInit {
   private _routes = inject(Router);
 
   ngOnInit(): void {
-    debugger
+
    this.loadingCandidateWithParams();
   }
 

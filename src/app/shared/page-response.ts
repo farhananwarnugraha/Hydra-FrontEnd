@@ -13,3 +13,16 @@ export interface PageResponse<T>{
     }
   }
 }
+
+export interface PageResponseDinamis<T>{
+  status: string;
+  message: string;
+  data: T;
+}
+
+export interface PaginationResponse{
+  pageNumber: number;
+  pageSize: number;
+  totalRows: number;
+  totalPage: number;
+}

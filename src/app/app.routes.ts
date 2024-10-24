@@ -5,6 +5,7 @@ import { CandidateListComponent } from './admin/candidate-list/candidate-list.co
 import { GuestComponent } from './guest/guest.component';
 import { AdminComponent } from './admin/admin.component';
 import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
+import { BootcampListComponent } from './admin/admin-bootcamp/bootcamp-list/bootcamp-list.component';
 
 export const routes: Routes = [
   {
@@ -49,6 +50,10 @@ export const routes: Routes = [
       {
         path: 'candidte',
       component: CandidateListComponent,
+      },
+      {
+        path: 'bootacamp',
+        component: BootcampListComponent
       }
     ]
   },
