@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { bootcampClasses } from '../bootcamp.model';
 
 @Component({
-  selector: 'app-bootcamp',
+  selector: 'tr[app-bootcamp]',
   standalone: true,
   imports: [RouterLink],
   templateUrl: './bootcamp.component.html',

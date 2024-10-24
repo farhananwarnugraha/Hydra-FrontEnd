@@ -2,7 +2,7 @@ import { PaginationResponse } from "../../shared/page-response"
 
 export interface BootcampClass {
   bootcampClasses: bootcampClasses[]
-  paginations: PaginationResponse
+  pagination: PaginationResponse
 }
 
 export interface bootcampClasses {
