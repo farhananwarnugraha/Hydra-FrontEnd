@@ -4,7 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { BootcampService } from '../bootcamp.service';
 import { TableLayoutComponent } from '../../../shared/table-layout/table-layout.component';
 import { BootcampComponent } from '../bootcamp/bootcamp.component';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-bootcamp-list',
@@ -26,9 +26,10 @@ export class BootcampListComponent implements OnInit{
   });
 
   private _bootcampService = inject(BootcampService);
+  private _route = inject(ActivatedRoute)
 
   ngOnInit(): void {
-    this.loadBootcampData();
+    this.loadBootcampWithParams()
     console.log(this.totalPages);
 
   }
@@ -41,6 +42,21 @@ export class BootcampListComponent implements OnInit{
       this.bootcamps = result.data;
       this.bootcampclasses = result.data.bootcampClasses;
       this.totalPages = result.data.pagination.totalPage;
+    })
+  }
+
+  private loadBootcampWithParams(){
+    this._route.queryParams.subscribe((params) => {
+      this.formFilter.patchValue(
+        {
+          batchBootcamp: params['batchBootcamp'] || 0,
+          descriptionBootcamp: params['descriptionBootcamp'] || null,
+          pageNumber: +params['pageNumber'] || 1
+        },
+        {emitEvent: false}
+      );
+
+      this.loadBootcampData()
     })
   }
 }
