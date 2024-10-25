@@ -14,7 +14,7 @@ export class HeaderComponent {
   constructor(private router: Router, private authService: AuthService) {}
 
   logOut(){
-    this.authService.purgeAuth();
-    this.router.navigate(['/login']);
+    // this.authService.purgeAuth();
+    // this.router.navigate(['/login']);
   }
 }
