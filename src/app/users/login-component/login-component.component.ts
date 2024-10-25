@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { LoginCredential } from '../users.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-component',
@@ -30,6 +31,13 @@ export class LoginComponentComponent {
       } as LoginCredential).subscribe({
         next: (userResponse) => {
           console.log(userResponse);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+          })
           this.router.navigate(['/admin']);
         },
         error: (error) => {
