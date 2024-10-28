@@ -30,17 +30,29 @@ export class LoginComponentComponent {
         password: this.form.value.password!
       } as LoginCredential).subscribe({
         next: (userResponse) => {
-          if(userResponse.data.role === 'Recruiter' && userResponse.data.role === 'Admin'){
-          //   console.log(userResponse);
+          // console.log(userResponse);
+          // console.log(userResponse.data.role);
+          if(userResponse.data.role === 'Recruiter' || userResponse.data.role === 'Admin'){
             Swal.fire({
               position: "center",
               icon: "success",
               title: "You have been logged in!",
               showConfirmButton: false,
               timer: 2000
-            })
-            this.router.navigate(['/admin']);
+            });
+            this.router.navigate(['/admin'])
           }
+          // if(userResponse.data.role === 'Recruiter' && userResponse.data.role === 'Admin'){
+          // //   console.log(userResponse);
+          //   Swal.fire({
+          //     position: "center",
+          //     icon: "success",
+          //     title: "You have been logged in!",
+          //     showConfirmButton: false,
+          //     timer: 2000
+          //   })
+          //   this.router.navigate(['/admin']);
+          // }
         },
         error: (error) => {
           console.error('Login gagal:', error);
