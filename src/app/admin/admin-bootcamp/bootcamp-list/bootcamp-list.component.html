@@ -1,5 +1,5 @@
 <div class="container p-2 mb-3 shadow-sm rounded">
-  <form action="">
+  <form [formGroup]="formFilter">
     <div class="row">
       <div class="col">
         <input type="text"
@@ -7,13 +7,16 @@
         placeholder="Description"
         aria-label="Description"
         id="description"
+        formControlName="descriptionBootcamp"
         >
       </div>
       <div class="col">
         <input type="number"
         class="form-control"
         placeholder="batchBootcamp"
-        aria-label="batchBootcamp">
+        aria-label="batchBootcamp"
+        formControlName="batchBootcamp"
+        >
       </div>
       <div class="col">
         <button class="btn btn-secondary">Filter</button>

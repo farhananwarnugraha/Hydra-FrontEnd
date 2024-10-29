@@ -5,19 +5,26 @@
   Back
 </button>
 <div class="container shadow-sm rounded">
-  <form>
+  <form [formGroup]="bootcampForm" (ngSubmit)="onSubmit()" class="pb-2">
     <div class="mb-3">
       <label for="exampleInputEmail1" class="form-label">Description</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" formControlName="description">
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">Start Date</label>
-      <input type="date" class="form-control" id="exampleInputPassword1">
+      <input type="date" class="form-control" id="exampleInputPassword1" formControlName="startDate">
     </div>
     <div class="mb-3">
       <label for="exampleInputPassword1" class="form-label">End Date (Estimated)</label>
-      <input type="date" class="form-control" id="exampleInputPassword1">
+      <input type="date" class="form-control" id="exampleInputPassword1" formControlName="endDate">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">
+      <i class="bi bi-floppy"></i>
+      Submit
+    </button>
+    <button type="reset" class="btn btn-secondary ms-2">
+      <i class="bi bi-arrow-clockwise"></i>
+      Reset
+    </button>
   </form>
 </div>

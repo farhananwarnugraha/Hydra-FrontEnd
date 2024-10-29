@@ -12,3 +12,9 @@ export interface bootcampClasses {
   endDate: string
 }
 
+export interface BootcampForm{
+  description: string
+  startDate: string
+  endDate: string
+}
+
