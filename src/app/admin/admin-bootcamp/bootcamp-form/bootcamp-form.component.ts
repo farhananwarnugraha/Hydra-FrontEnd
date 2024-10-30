@@ -16,7 +16,7 @@ export class BootcampFormComponent implements OnInit {
   @Input() bootcampId?: number;
   // ResponseBootcamp?: bootcampClasses
   bootcampForm = new FormGroup({
-    batchBootcamp: new FormControl<number>(0),
+    bootcampId: new FormControl<number>(0),
     description: new FormControl<string>('', {validators: Validators.required}),
     startDate: new FormControl<string>('', {validators: Validators.required}),
     endDate: new FormControl<string>('', {validators: Validators.required}),
@@ -37,7 +37,7 @@ export class BootcampFormComponent implements OnInit {
     if(this.bootcampId){
       this._bootcampService.getBootcampId(this.bootcampId).subscribe((bootcamp) => {
         // console.log(bootcamp.data.bootcampId);
-        this.bootcampForm.controls.batchBootcamp.setValue(bootcamp.data.bootcampId);
+        this.bootcampForm.controls.bootcampId.setValue(bootcamp.data.bootcampId);
         this.bootcampForm.controls.description.setValue(bootcamp.data.description);
         this.bootcampForm.controls.startDate.setValue(bootcamp.data.startDate);
         this.bootcampForm.controls.endDate.setValue(bootcamp.data.endDate);
@@ -57,7 +57,8 @@ export class BootcampFormComponent implements OnInit {
 
     if(this.bootcampId){
       console.log("Ini Terdapat id")
-      this.updateBootcamp(this.bootcampId);
+      console.log(this.bootcampForm.value);
+      this.updateBootcamp();
     }
     else{
       this.insertBootcamp();
@@ -80,10 +81,10 @@ export class BootcampFormComponent implements OnInit {
     })
   }
 
-  private updateBootcamp(bootcampId: number) {
+  private updateBootcamp() {
     this._bootcampService.updateBootcamp(this.bootcampForm.value as BootcampForm).subscribe({
       next: () => {
-        alert(`Bootcamp Batch ${bootcampId} sucessed updated`);
+        alert(`Bootcamp Batch sucessed updated`);
         this._router.navigate(['/admin/bootcamps']);
       }
     })

@@ -12,7 +12,4 @@ import { bootcampClasses } from '../bootcamp.model';
 export class BootcampComponent {
   @Input({required: true}) bootcampclasses!: bootcampClasses;
   @Output() deleted = new EventEmitter<void>();
-  onDelete() {
-
-  }
 }
