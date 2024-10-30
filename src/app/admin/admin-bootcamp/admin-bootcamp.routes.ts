@@ -10,5 +10,9 @@ export const adminBootcampRoutes: Routes = [
   {
     path: 'add-class',
     component: BootcampFormComponent
+  },
+  {
+    path: 'edit/:bootcampId',
+    component: BootcampFormComponent
   }
 ];

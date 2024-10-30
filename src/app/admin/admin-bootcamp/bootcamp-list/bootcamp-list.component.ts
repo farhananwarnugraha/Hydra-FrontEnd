@@ -19,11 +19,11 @@ export class BootcampListComponent implements OnInit{
   bootcampclasses!: bootcampClasses[];
   totalPages!: number;
 
-
   formFilter = new FormGroup({
     descriptionBootcamp: new FormControl(''),
     batchBootcamp: new FormControl(0),
     pageNumber: new FormControl(1),
+    pageSize : new FormControl(10)
   });
 
   private _bootcampService = inject(BootcampService);
@@ -46,13 +46,21 @@ export class BootcampListComponent implements OnInit{
     })
   }
 
+  forceValidPageSize(){
+    const pageSize = this.formFilter.value.pageSize;
+    if(!pageSize || pageSize === 0 || pageSize >=10){
+      this.formFilter.controls['pageSize'].setValue(10)
+    }
+  }
+
   private loadBootcampWithParams(){
     this._route.queryParams.subscribe((params) => {
       this.formFilter.patchValue(
         {
-          batchBootcamp: params['batchBootcamp'] || 0,
+          pageNumber: +params['pageNumber'] || 1,
+          pageSize: +params['pageSize'] || 10,
           descriptionBootcamp: params['descriptionBootcamp'] || null,
-          pageNumber: +params['pageNumber'] || 1
+          batchBootcamp: params['batchBootcamp'] || 0
         },
         {emitEvent: false}
       );
@@ -67,7 +75,7 @@ export class BootcampListComponent implements OnInit{
         distinctUntilChanged(),
         tap((formVale) => {
           const queryParams = {
-            descriptionBootcamp: formVale.descriptionBootcamp?.trim() || null,
+            bootcampName: formVale.descriptionBootcamp?.trim() || null,
             batchBootcamp: formVale.batchBootcamp!,
             pageNumber: formVale.pageNumber!,
           };
@@ -80,7 +88,7 @@ export class BootcampListComponent implements OnInit{
 
         switchMap((formValue) => {
           const filter = {
-            descriptionBootcamp: formValue.descriptionBootcamp?.trim() || null,
+            bootcampName: formValue.descriptionBootcamp?.trim() || null,
             batchBootcamp: formValue.batchBootcamp!,
             pageNumber: formValue.pageNumber!,
           };

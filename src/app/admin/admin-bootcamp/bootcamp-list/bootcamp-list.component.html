@@ -2,24 +2,32 @@
   <form [formGroup]="formFilter">
     <div class="row">
       <div class="col">
+        <label for="">Description</label>
         <input type="text"
         class="form-control"
-        placeholder="Description"
-        aria-label="Description"
-        id="description"
+        id="descriptionBootcamp"
         formControlName="descriptionBootcamp"
         >
       </div>
       <div class="col">
+        <label for="">Batch</label>
         <input type="number"
         class="form-control"
-        placeholder="batchBootcamp"
-        aria-label="batchBootcamp"
+        id="batchBootcamp"
         formControlName="batchBootcamp"
+        min="0"
         >
       </div>
       <div class="col">
-        <button class="btn btn-secondary">Filter</button>
+        <label for="">Total Data</label>
+        <input type="number"
+        class="form-control"
+        formControlName="pageSize"
+        id="pageSize"
+        min="0"
+        max="10"
+        (change)="forceValidPageSize()"
+      >
       </div>
     </div>
   </form>

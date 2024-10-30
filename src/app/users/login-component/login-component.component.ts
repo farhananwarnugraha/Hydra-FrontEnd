@@ -55,7 +55,11 @@ export class LoginComponentComponent {
           // }
         },
         error: (error) => {
-          console.error('Login gagal:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Try again!, Username or Password is wrong!'
+          })
         }
       });
     }

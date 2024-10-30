@@ -27,8 +27,8 @@ export class BootcampService {
     })
   }
 
-  getBootcampId(batchbootcamp: number): Observable<bootcampClasses>{
-    return this._http.get<bootcampClasses>(`${this._apiBootcamp}/${batchbootcamp}`)
+  getBootcampId(bootcampId: number): Observable<PageResponseDinamis<bootcampClasses>>{
+    return this._http.get<PageResponseDinamis<bootcampClasses>>(`${this._apiBootcamp}/${bootcampId}`)
   }
 
   addNewBootcamp(bootcampData: BootcampForm):Observable<bootcampClasses>{
@@ -40,4 +40,22 @@ export class BootcampService {
       })
     );
   }
+
+  updateBootcamp(bootcampData: BootcampForm):Observable<bootcampClasses>{
+    return this._http.put<bootcampClasses>(`${this._apiBootcamp}`, bootcampData).pipe(
+      catchError((error) => {
+        console.log(error);
+        return throwError(() => 'Kelasalahan System ' + `${error.message}`);
+      })
+    )
+  }
+
+  // deleteBootcamp(bootcampId: number):Observable<bootcampClasses>{
+  //   return this._http.delete<bootcampClasses>(`${this._apiBootcamp}/${bootcampId}`).pipe(
+  //     catchError((error) => {
+  //       console.log(error);
+  //       return throwError(() => 'Kelasalahan System ' + `${error.message}`);
+  //     })
+  //   )
+  // }
 }
