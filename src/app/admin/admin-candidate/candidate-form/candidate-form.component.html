@@ -1,47 +1,63 @@
 <p>Add New Candidate</p>
+<button class="btn btn-outline-danger mb-2" [routerLink]="['/admin/candidates']">
+  <i class="bi bi-arrow-left"></i>
+  Back To List
+</button>
 <div class="container p-3 rounded shadow">
   <form class="row g-3" [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label" >First Name</label>
-      <input type="email" class="form-control" id="inputEmail4">
+      <label for="firstname" class="form-label" >First Name</label>
+      <input type="email" class="form-control" id="firstname" formControlName="firstName">
     </div>
     <div class="col-md-6">
-      <label for="inputPassword4" class="form-label">Password</label>
-      <input type="password" class="form-control" id="inputPassword4">
+      <label for="lastname" class="form-label">Last Name</label>
+      <input type="password" class="form-control" id="lastname" formControlName="lastName">
+    </div>
+    <div class="col-12">
+      <label for="">Bootcamp Class</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Choose Bootcamp Class</option>
+        <option value="1">Description 1</option>
+        <option value="2">Description 2</option>
+        <option value="3">Description 3</option>
+      </select>
     </div>
     <div class="col-12">
       <label for="inputAddress" class="form-label">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-    <div class="col-12">
-      <label for="inputAddress2" class="form-label">Address 2</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+      <textarea class="form-control" id="inputAddress" formControlName="address"></textarea>
     </div>
     <div class="col-md-6">
-      <label for="inputCity" class="form-label">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-    <div class="col-md-4">
-      <label for="inputState" class="form-label">State</label>
-      <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>...</option>
+      <label for="inputCity" class="form-label">Gender</label>
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Choose Bootcamp Class</option>
+        <option value="1">Description 1</option>
+        <option value="2">Description 2</option>
+        <option value="3">Description 3</option>
       </select>
     </div>
-    <div class="col-md-2">
-      <label for="inputZip" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
+    <div class="col-md-6">
+      <label for="inputState" class="form-label">Birthdate</label>
+      <input type="date" class="form-control" id="inputState" formControlName="birthdate">
     </div>
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
-        <label class="form-check-label" for="gridCheck">
-          Check me out
-        </label>
-      </div>
+    <div class="col-md-6">
+      <label for="inputZip" class="form-label">Domicilie</label>
+      <input type="text" class="form-control" id="inputZip" formControlName="domicile">
     </div>
-    <div class="col-12">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+    <div class="col-md-6">
+      <label class="form-check-label" for="gridCheck">
+          Phone Number
+      </label>
+      <input type="text" class="form-control" id="gridCheck" formControlName="Phone Number">
+    </div>
+    <div class="m-2">
+      <button type="submit" class="btn btn-primary">
+        <i class="bi bi-floppy"></i>
+        Save
+      </button>
+      <button type="reset" class="btn btn-secondary ms-2">
+        <i class="bi bi-arrow-clockwise"></i>
+        Reset
+      </button>
     </div>
   </form>
 </div>
