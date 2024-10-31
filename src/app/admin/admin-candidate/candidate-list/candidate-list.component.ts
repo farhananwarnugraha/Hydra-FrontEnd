@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { TableLayoutComponent } from '../../shared/table-layout/table-layout.component';
-import { Candidate } from '../../candidates/candidates.model';
-import { CandidatesService } from '../../candidates/candidates.service';
+import { TableLayoutComponent } from '../../../shared/table-layout/table-layout.component';
+import { CandidatesService } from '../../../candidates/candidates.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CandidateComponent } from '../candidate/candidate.component';
+import { Candidate } from '../admin.candidate.model';
 
 @Component({
   selector: 'app-candidate-list',

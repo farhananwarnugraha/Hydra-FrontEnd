@@ -25,4 +25,8 @@ export class CandidateService {
       params: activedParams
     });
   }
+
+  getCandidateId(candidateId: number): Observable<PageResponseDinamis<Candidates>>{
+    return this._http.get<PageResponseDinamis<Candidates>>(`${this._apiCandidate}/${candidateId}`);
+  }
 }

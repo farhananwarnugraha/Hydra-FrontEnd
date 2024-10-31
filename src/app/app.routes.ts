@@ -1,7 +1,7 @@
 import { Router, Routes } from '@angular/router';
 import { LoginComponentComponent } from './users/login-component/login-component.component';
 import { RegisterComponentComponent } from './users/register-component/register-component.component';
-import { CandidateListComponent } from './admin/candidate-list/candidate-list.component';
+import { CandidateListComponent } from './admin/admin-candidate/candidate-list/candidate-list.component';
 import { GuestComponent } from './guest/guest.component';
 import { AdminComponent } from './admin/admin.component';
 import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';

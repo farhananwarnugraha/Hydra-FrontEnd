@@ -23,3 +23,16 @@ export interface CandaidateForm{
   domicile: string,
   phoneNumber: string
 }
+
+export interface CandidateForm{
+  candidateId: number,
+  firstName: string,
+  lastName: string,
+  bootcampClass: number,
+  gender: string,
+  birthDate: string,
+  address:string,
+  domicile: string,
+  phoneNumber: string
+  isActive: boolean
+}

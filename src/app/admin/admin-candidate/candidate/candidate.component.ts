@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Candidate } from '../../candidates/candidates.model';
+import { Candidate } from '../admin.candidate.model';
 
 @Component({
   selector: 'tr[app-candidate]',
