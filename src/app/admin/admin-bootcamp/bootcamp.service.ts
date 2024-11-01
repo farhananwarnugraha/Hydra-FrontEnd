@@ -4,7 +4,7 @@ import { environment } from '../../app.config';
 import { Params } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { PageResponse, PageResponseDinamis } from '../../shared/page-response';
-import { BootcampClass, bootcampClasses, BootcampForm } from './bootcamp.model';
+import { BootcampClass, bootcampClasses, BootcampForm, BootcampPlanedList } from './bootcamp.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,10 @@ export class BootcampService {
         return throwError(() => 'Kelasalahan System ' + `${error.message}`);
       })
     )
+  }
+
+  getBootcampPlannedAll():Observable<PageResponseDinamis<BootcampPlanedList[]>>{
+    return this._http.get<PageResponseDinamis<BootcampPlanedList[]>>(`${this._apiBootcamp}/planedall`);
   }
 
   // deleteBootcamp(bootcampId: number):Observable<bootcampClasses>{

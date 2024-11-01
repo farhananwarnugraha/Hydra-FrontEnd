@@ -3,8 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../app.config';
 import { Params } from '@angular/router';
 import { PageResponse, PageResponseDinamis } from '../../shared/page-response';
-import { Observable } from 'rxjs';
-import { Candidates } from './admin.candidate.model';
+import { catchError, Observable, throwError } from 'rxjs';
+import { Candidate, CandidateForm, Candidates } from './admin.candidate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +28,21 @@ export class CandidateService {
 
   getCandidateId(candidateId: number): Observable<PageResponseDinamis<Candidates>>{
     return this._http.get<PageResponseDinamis<Candidates>>(`${this._apiCandidate}/${candidateId}`);
+  }
+
+  addNewCandidate(candidateData: CandidateForm):Observable<Candidate>{
+    return this._http.post<Candidate>(this._apiCandidate, candidateData).pipe(
+      catchError((error) => {
+        return throwError(() => 'Kelasalahan System ' + `${error.message}`);
+      })
+    );
+  }
+
+  updateCandidate(candidateData: CandidateForm): Observable<Candidate>{
+    return this._http.put<Candidate>(`${this._apiCandidate}/${candidateData.candidateId}`, candidateData).pipe(
+      catchError((error) => {
+        return throwError(() => 'Kelasalahan System ' + `${error.message}`);
+      })
+    )
   }
 }

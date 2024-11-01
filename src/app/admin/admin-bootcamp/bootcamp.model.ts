@@ -12,6 +12,17 @@ export interface bootcampClasses {
   endDate: string
 }
 
+export interface BootcampPlanedList{
+  bootcampId: number,
+  description: string,
+  startDate: string,
+  endDate: string,
+  totalCandidates: number,
+  trainerName: string,
+  courseName: string
+}
+
+
 export interface BootcampForm{
   description: string
   startDate: string
