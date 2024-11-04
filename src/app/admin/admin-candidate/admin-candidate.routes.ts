@@ -10,5 +10,9 @@ export const adminCandidateRoutes: Routes = [
   {
     path: 'add-candidate',
     component: CandidateFormComponent
+  },
+  {
+    path: 'edit/:candidateId',
+    component: CandidateFormComponent
   }
 ];

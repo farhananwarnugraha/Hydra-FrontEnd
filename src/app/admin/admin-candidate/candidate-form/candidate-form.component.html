@@ -3,53 +3,58 @@
   <i class="bi bi-arrow-left"></i>
   Back To List
 </button>
-<div class="container rounded shadow p-2"></div>
-<form class="row g-3">
-  <div class="col-md-6">
-    <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4">
-  </div>
-  <div class="col-md-6">
-    <label for="inputPassword4" class="form-label">Password</label>
-    <input type="password" class="form-control" id="inputPassword4">
-  </div>
-  <div class="col-12">
-    <label for="inputAddress2" class="form-label">Bootcamp Class</label>
-    <select id="inputState" class="form-select">
-      <option selected>Choose...</option>
-      @for (item of bootcampPlanned; track $index) {
-        <option value="{{ item.bootcampId }}">Batch {{ item.bootcampId }} - {{ item.description }}</option>
-      }
-    </select>
-  </div>
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-  </div>
-  <div class="col-md-6">
-    <label for="inputCity" class="form-label">City</label>
-    <input type="text" class="form-control" id="inputCity">
-  </div>
-  <div class="col-md-4">
-    <label for="inputState" class="form-label">State</label>
-    <select id="inputState" class="form-select">
-      <option selected>Choose...</option>
-      <option>...</option>
-    </select>
-  </div>
-  <div class="col-md-2">
-    <label for="inputZip" class="form-label">Zip</label>
-    <input type="text" class="form-control" id="inputZip">
-  </div>
-  <div class="col-12">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Check me out
-      </label>
+<div class="container rounded shadow mt-2 p-2">
+  <form class="row g-3" [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+    <div class="col-md-6">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
     </div>
-  </div>
-  <div class="col-12">
-    <button type="submit" class="btn btn-primary">Sign in</button>
-  </div>
-</form>
+    <div class="col-md-6">
+      <label for="lastName" class="form-label">Last Name</label>
+      <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+    </div>
+    <div class="col-12">
+      <label for="bootcampClass" class="form-label">Bootcamp Class</label>
+      <select class="form-select" formControlName="bootcampClass">
+        <option [value]="null" selected>Choose Bootcamp Class</option>
+        @for (item of bootcampPlanned; track $index) {
+          <option [value]="item.bootcampId">Batch: {{ item.bootcampId }}</option>
+        }
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="birthDate" class="form-label">Birth Date</label>
+      <input type="date" class="form-control" formControlName="birthDate">
+    </div>
+    <div class="col-md-6">
+      <label for="gender" class="form-label">Gender</label>
+      <select class="form-select" formControlName="gender">
+        <option value=" " selected>Choose Gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" formControlName="address">
+    </div>
+    <div class="col-md-6">
+      <label for="domicile" class="form-label">Domicile</label>
+      <input type="text" class="form-control" formControlName="domicile">
+    </div>
+    <div class="col-md-6">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input type="text" class="form-control" formControlName="phoneNumber">
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary" [disabled]="candidateForm.invalid">
+        <i class="bi bi-floppy"></i>
+        Submit
+      </button>
+      <button type="reset" class="btn btn-secondary ms-2">
+        <i class="bi bi-arrow-clockwise"></i>
+        Reset
+      </button>
+    </div>
+  </form>
+</div>

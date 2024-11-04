@@ -4,7 +4,7 @@ import { environment } from '../../app.config';
 import { Params } from '@angular/router';
 import { PageResponse, PageResponseDinamis } from '../../shared/page-response';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Candidate, CandidateForm, Candidates } from './admin.candidate.model';
+import { AddCandaidateForm, Candidate, CandidateForm, Candidates } from './admin.candidate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,11 +26,11 @@ export class CandidateService {
     });
   }
 
-  getCandidateId(candidateId: number): Observable<PageResponseDinamis<Candidates>>{
-    return this._http.get<PageResponseDinamis<Candidates>>(`${this._apiCandidate}/${candidateId}`);
+  getCandidateId(candidateId: number): Observable<PageResponseDinamis<AddCandaidateForm>>{
+    return this._http.get<PageResponseDinamis<AddCandaidateForm>>(`${this._apiCandidate}/${candidateId}`);
   }
 
-  addNewCandidate(candidateData: CandidateForm):Observable<Candidate>{
+  addNewCandidate(candidateData: AddCandaidateForm):Observable<Candidate>{
     return this._http.post<Candidate>(this._apiCandidate, candidateData).pipe(
       catchError((error) => {
         return throwError(() => 'Kelasalahan System ' + `${error.message}`);
