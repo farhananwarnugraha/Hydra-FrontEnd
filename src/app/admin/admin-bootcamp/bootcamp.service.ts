@@ -50,8 +50,8 @@ export class BootcampService {
     )
   }
 
-  getBootcampPlannedAll():Observable<PageResponseDinamis<BootcampPlanedList[]>>{
-    return this._http.get<PageResponseDinamis<BootcampPlanedList[]>>(`${this._apiBootcamp}/planedall`);
+  getBootcampAll():Observable<PageResponseDinamis<bootcampClasses[]>>{
+    return this._http.get<PageResponseDinamis<bootcampClasses[]>>(`${this._apiBootcamp}All`);
   }
 
   // deleteBootcamp(bootcampId: number):Observable<bootcampClasses>{

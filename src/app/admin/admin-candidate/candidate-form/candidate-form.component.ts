@@ -18,11 +18,12 @@ import Swal from 'sweetalert2';
 })
 export class CandidateFormComponent implements OnInit {
   @Input() candidateId?: number;
-  bootcampPlanned!: BootcampPlanedList[];
+  bootcampDropdown!: bootcampClasses[];
   private _router = inject(Router);
   private _candidateService = inject(CandidateService);
   private _bootcampService = inject(BootcampService);
   candidateForm = new FormGroup({
+    candidateId: new FormControl<number>(0),
     bootcampClass: new FormControl<number>(0, {validators: Validators.required}),
     firstName: new FormControl<string>('', {validators: Validators.required}),
     lastName: new FormControl<string>('', {validators: Validators.required}),
@@ -31,10 +32,12 @@ export class CandidateFormComponent implements OnInit {
     address: new FormControl<string>('', {validators: Validators.required}),
     domicile: new FormControl<string>('', {validators: Validators.required}),
     phoneNumber: new FormControl<string>('', {validators: Validators.required}),
+    isActive: new FormControl<boolean>(true),
   })
   ngOnInit(): void {
     if(this.candidateId){
-      this._candidateService.getCandidateId(this.candidateId).subscribe((result) => {
+        this._candidateService.getCandidateId(this.candidateId).subscribe((result) => {
+        this.candidateForm.controls.candidateId.setValue(result.data.candidateId)
         this.candidateForm.controls.firstName.setValue(result.data.firstName);
         this.candidateForm.controls.lastName.setValue(result.data.lastName);
         this.candidateForm.controls.bootcampClass.setValue(result.data.bootcampClass);
@@ -45,23 +48,22 @@ export class CandidateFormComponent implements OnInit {
         const birthDate = new Date(result.data.birthDate);
         const formatedDate = birthDate.toISOString().split('T')[0];
         this.candidateForm.controls.birthDate.setValue(formatedDate);
+        this.candidateForm.controls.isActive.setValue(result.data.isActive);
       })
     }
-    this._bootcampService.getBootcampPlannedAll().subscribe((result) => this.bootcampPlanned = result.data)
+    this._bootcampService.getBootcampAll().subscribe((result) => this.bootcampDropdown = result.data)
   }
 
   onSubmit() {
     if(this.candidateForm.invalid){
-      alert("Please Fill in all the firelds");
+      alert("Please Fill in all the Fields");
       return
     }else{
       if(this.candidateId) {
-        console.log("Upddate");
+        this._updateCandidate(this.candidateForm.value as CandidateForm);
 
       } else {
         console.log(this.candidateForm.value);
-
-
         this._addNewCandidate(this.candidateForm.value as AddCandaidateForm);
       }
     }
@@ -76,6 +78,25 @@ export class CandidateFormComponent implements OnInit {
           text: response.fullName + ' has been add as Candidate Bootcamp Batch ' + response.batchBootcamp,
         })
         this._router.navigate(['/admin/candidate'])
+      },
+      error: ()=> {
+        alert("Failed to add candidate, please cek your data");
+      }
+    })
+  }
+
+  private _updateCandidate(candidateData: CandidateForm) {
+    this._candidateService.updateCandidate(candidateData).subscribe({
+      next: (response) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: response.fullName + ' has been update'
+        })
+        this._router.navigate(['/admin/candidate'])
+      },
+      error: ()=> {
+        alert("Failed to update candidate, please cek your data");
       }
     })
   }

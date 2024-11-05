@@ -5,6 +5,9 @@
 </button>
 <div class="container rounded shadow mt-2 p-2">
   <form class="row g-3" [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
+    <div clas class="col-12">
+      <input type="number" class="form-control" formControlName="candidateId" hidden>
+    </div>
     <div class="col-md-6">
       <label for="firstName" class="form-label">First Name</label>
       <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
@@ -15,9 +18,9 @@
     </div>
     <div class="col-12">
       <label for="bootcampClass" class="form-label">Bootcamp Class</label>
-      <select class="form-select" formControlName="bootcampClass">
-        <option [value]="null" selected>Choose Bootcamp Class</option>
-        @for (item of bootcampPlanned; track $index) {
+      <select class="form-select" aria-label="Default select example" formControlName="bootcampClass">
+        <option value=" " selected>Choose Bootcamp Class</option>
+        @for (item of bootcampDropdown; track $index) {
           <option [value]="item.bootcampId">Batch: {{ item.bootcampId }}</option>
         }
       </select>
@@ -28,7 +31,7 @@
     </div>
     <div class="col-md-6">
       <label for="gender" class="form-label">Gender</label>
-      <select class="form-select" formControlName="gender">
+      <select class="form-select" aria-label="Default select example" formControlName="gender">
         <option value=" " selected>Choose Gender</option>
         <option value="M">Male</option>
         <option value="F">Female</option>
@@ -45,6 +48,13 @@
     <div class="col-md-6">
       <label for="phoneNumber" class="form-label">Phone Number</label>
       <input type="text" class="form-control" formControlName="phoneNumber">
+    </div>
+    <div class="col-12">
+      <label for="isActive" class="form-label">Status Candidate</label>
+      <select class="form-select" aria-label="Default select example" formControlName="isActive">
+        <option value="true" selected>Active</option>
+        <option value="false">Non Active</option>
+      </select>
     </div>
     <div class="col-12">
       <button type="submit" class="btn btn-primary" [disabled]="candidateForm.invalid">

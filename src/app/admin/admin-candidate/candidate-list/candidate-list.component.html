@@ -1,5 +1,5 @@
 <div class="alert alert-light p-2">
-  <form action="">
+  <form [formGroup]="formFilter">
     <div class="row">
       <div class="col">
         <input
@@ -8,6 +8,7 @@
           placeholder="Full Name"
           aria-label="First name"
           id="fullName"
+          formControlName="fullName"
         >
       </div>
       <div class="col">
@@ -16,11 +17,12 @@
           class="form-control"
           placeholder="Batch Bootcamp"
           aria-label="Last name"
+          formControlName="batchBootcamp"
         >
       </div>
-      <div class="col">
+      <!-- <div class="col">
         <button class="btn btn-secondary">Filter</button>
-      </div>
+      </div> -->
     </div>
   </form>
 </div>

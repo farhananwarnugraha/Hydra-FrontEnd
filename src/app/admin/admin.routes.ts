@@ -9,6 +9,10 @@ export const adminRoutes: Routes = [
     component: DashboardAdminComponent
   },
   {
+    path: 'dashboard',
+    redirectTo: ''
+  },
+  {
     path: 'bootcamps',
     component: AdminBootcampComponent,
     loadChildren: () =>

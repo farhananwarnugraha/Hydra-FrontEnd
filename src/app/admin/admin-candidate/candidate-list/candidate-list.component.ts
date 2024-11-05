@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CandidateComponent } from '../candidate/candidate.component';
 import { Candidate } from '../admin.candidate.model';
+import { debounce, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-candidate-list',
@@ -30,8 +31,8 @@ export class CandidateListComponent implements OnInit {
   private _routes = inject(Router);
 
   ngOnInit(): void {
-
    this.loadingCandidateWithParams();
+   this._loadFilterChange();
   }
 
   loadDataCandidate(){
@@ -56,5 +57,34 @@ export class CandidateListComponent implements OnInit {
       }, {emitEvent: false});
       this.loadDataCandidate();
     });
+  }
+
+  private _loadFilterChange(){
+    this.formFilter.valueChanges
+    .pipe(
+      debounceTime(1000),
+      distinctUntilChanged(),
+      tap((formValue) => {
+        const queryParams = {
+          fullName: formValue.fullName?.trim() || null,
+          batchBootcamp: formValue.batchBootcamp!,
+          pageNumber: formValue.pageNumber!,
+          pageSize: formValue.pageSize!
+        };
+      }),
+
+      switchMap((formValue) => {
+        const filter = {
+          fullName: formValue.fullName?.trim() || null,
+          batchBootcamp: formValue.batchBootcamp!,
+          pageNumber: formValue.pageNumber!,
+          pageSize: formValue.pageSize!
+        };
+        return this._candidateService.getAllCandidate(filter);
+      })
+    ).subscribe((result) => {
+      this.candidates = result.data.candidates;
+      this.totalPages = result.data.paginations.totalPage;
+    })
   }
 }

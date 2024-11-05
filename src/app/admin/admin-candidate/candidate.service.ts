@@ -26,8 +26,8 @@ export class CandidateService {
     });
   }
 
-  getCandidateId(candidateId: number): Observable<PageResponseDinamis<AddCandaidateForm>>{
-    return this._http.get<PageResponseDinamis<AddCandaidateForm>>(`${this._apiCandidate}/${candidateId}`);
+  getCandidateId(candidateId: number): Observable<PageResponseDinamis<CandidateForm>>{
+    return this._http.get<PageResponseDinamis<CandidateForm>>(`${this._apiCandidate}/${candidateId}`);
   }
 
   addNewCandidate(candidateData: AddCandaidateForm):Observable<Candidate>{
@@ -39,7 +39,7 @@ export class CandidateService {
   }
 
   updateCandidate(candidateData: CandidateForm): Observable<Candidate>{
-    return this._http.put<Candidate>(`${this._apiCandidate}/${candidateData.candidateId}`, candidateData).pipe(
+    return this._http.put<Candidate>(`${this._apiCandidate}`, candidateData).pipe(
       catchError((error) => {
         return throwError(() => 'Kelasalahan System ' + `${error.message}`);
       })
