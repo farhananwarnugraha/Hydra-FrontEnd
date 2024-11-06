@@ -1,7 +1,10 @@
-import { Routes } from "@angular/router";
+import { Router, Routes } from "@angular/router";
 import { DashboardAdminComponent } from "./dashboard-admin/dashboard-admin.component";
 import { AdminBootcampComponent } from "./admin-bootcamp/admin-bootcamp.component";
 import { AdminCandidateComponent } from "./admin-candidate/admin-candidate.component";
+import { inject } from "@angular/core";
+import { AuthService } from "../users/auth.service";
+import { map } from "rxjs";
 
 export const adminRoutes: Routes = [
   {

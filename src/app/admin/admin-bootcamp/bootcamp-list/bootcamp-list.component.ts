@@ -6,6 +6,8 @@ import { TableLayoutComponent } from '../../../shared/table-layout/table-layout.
 import { BootcampComponent } from '../bootcamp/bootcamp.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
+import { InfoUser } from '../../../users/users.model';
+import { AuthService } from '../../../users/auth.service';
 
 @Component({
   selector: 'app-bootcamp-list',
@@ -18,6 +20,9 @@ export class BootcampListComponent implements OnInit{
   bootcamps!: BootcampClass;
   bootcampclasses!: bootcampClasses[];
   totalPages!: number;
+  user: InfoUser | null = null;
+  header: string[] = ['Batch', 'Description', 'Start Date', 'End Date', 'Action'];
+  hederTm: string[] = ['Batch', 'Description', 'Start Date', 'End Date']
 
   formFilter = new FormGroup({
     descriptionBootcamp: new FormControl(''),
@@ -29,12 +34,13 @@ export class BootcampListComponent implements OnInit{
   private _bootcampService = inject(BootcampService);
   private _route = inject(ActivatedRoute)
   private _router = inject(Router)
+  private _authService = inject(AuthService)
 
   ngOnInit(): void {
     this.loadBootcampWithParams();
     this.loadFilterChange();
     console.log(this.totalPages);
-
+    this._authService.currentUser$.subscribe((user) => this.user = user)
   }
 
   loadBootcampData(){

@@ -1,3 +1,15 @@
+@if (role?.role === 'TrainingManager') {
+  <div class="container justify-content-start mb-1">
+    <button class="btn btn-secondary">
+      <i class="bi bi-list"></i>
+      List Candidate
+    </button>
+    <button class="btn btn-secondary ms-2">
+      <i class="bi bi-file-earmark-check-fill"></i>
+      Evaluation Result
+    </button>
+  </div>
+}
 <div class="alert alert-light p-2">
   <form [formGroup]="formFilter">
     <div class="row">
@@ -27,16 +39,21 @@
   </form>
 </div>
 
-<div class="container">
-  <button class="btn btn-primary" [routerLink]="['add-candidate']">
-    Add Candidate
-  </button>
-</div>
+@if(role?.role !== 'TrainingManager') {
+  <div class="container">
+    <button class="btn btn-primary" [routerLink]="['add-candidate']">
+      Add Candidate
+    </button>
+  </div>
+}
 
 <div class="container p-3 shadow rounded mt-2 overflow-auto">
+  @if(role?.role !== 'Administrator' && role?.role !== 'Recruiter') {
+
+  }
   <table class="table table-bordered table-striped table-hover mt-1"
   app-table-layout
-  [headers]="['Full Name', 'Batch Bootcamp', 'Contact Candidate', 'Domicile', 'Action']"
+  [headers]="role?.role === 'TrainingManager' ? heeaderTm : header"
   >
   <tbody>
     @for (c of candidates; track $index) {

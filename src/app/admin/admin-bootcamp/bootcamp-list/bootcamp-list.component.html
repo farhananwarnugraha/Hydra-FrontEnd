@@ -1,3 +1,16 @@
+@if(user?.role !== 'Administrator' && user?.role !== 'Recruiter') {
+  <div class="container justify-content-start mb-1">
+    <button class="btn btn-secondary">
+      Planed
+    </button>
+    <button class="btn btn-secondary ms-2">
+      Active
+    </button>
+    <button class="btn btn-secondary ms-2">
+      Completed
+    </button>
+  </div>
+}
 <div class="container p-2 mb-3 shadow-sm rounded">
   <form [formGroup]="formFilter">
     <div class="row">
@@ -33,15 +46,17 @@
   </form>
 </div>
 
-<div class="container">
-  <button class="btn btn-outline-success" [routerLink]="['/admin/bootcamps/add-class']">
-    Add Bootcamp Class
-  </button>
-</div>
+@if (user?.role !=='TrainingManager') {
+  <div class="container">
+    <button class="btn btn-outline-success" [routerLink]="['/admin/bootcamps/add-class']">
+      Add Bootcamp Class
+    </button>
+  </div>
+}
 
 <div class="container p-3 shadow rounded mt-2">
   <table class="table table-bordered table-striped table-hover mt-1"
-  app-table-layout [headers]="['Batch', 'Description', 'Start Date', 'End Date', 'Action']">
+  app-table-layout [headers]="user?.role === 'TrainingManager' ? hederTm: header">
   <tbody class="text-center">
     @for (b of bootcampclasses; track $index) {
       <tr app-bootcamp [bootcampclasses]="b" (deleted)="loadBootcampData()"></tr>

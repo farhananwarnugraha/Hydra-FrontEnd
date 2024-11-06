@@ -6,6 +6,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CandidateComponent } from '../candidate/candidate.component';
 import { Candidate } from '../admin.candidate.model';
 import { debounce, debounceTime, distinctUntilChanged, switchMap, tap } from 'rxjs';
+import { AuthService } from '../../../users/auth.service';
+import { InfoUser } from '../../../users/users.model';
 
 @Component({
   selector: 'app-candidate-list',
@@ -18,6 +20,9 @@ export class CandidateListComponent implements OnInit {
   candidates: Candidate[] = [];
   totalPages!: number;
   isLoading: boolean = true;
+  role: InfoUser | null = null;
+  header: string[] = ['Full Name', 'Batch Bootcamp', 'Contact Candidate', 'Domicile', 'Action'];
+  heeaderTm: string[] = ['Full Name', 'Batch Bootcamp', 'Contact Candidate', 'Domicile'];
 
   formFilter = new FormGroup({
     fullName: new FormControl(''),
@@ -29,10 +34,16 @@ export class CandidateListComponent implements OnInit {
   private _candidateService = inject(CandidatesService);
   private _route = inject(ActivatedRoute);
   private _routes = inject(Router);
+  private _authService = inject(AuthService);
+
+  constructor (){
+
+  }
 
   ngOnInit(): void {
-   this.loadingCandidateWithParams();
-   this._loadFilterChange();
+    this._authService.currentUser$.subscribe((user) => this.role = user);
+    this.loadingCandidateWithParams();
+    this._loadFilterChange();
   }
 
   loadDataCandidate(){

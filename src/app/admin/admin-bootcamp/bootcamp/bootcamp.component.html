@@ -2,9 +2,11 @@
 <td>{{ bootcampclasses.description }}</td>
 <td>{{ bootcampclasses.startDate }}</td>
 <td>{{ bootcampclasses.endDate }}</td>
-<td class="table-action">
-  <button class="btn btn-warning m-2" [routerLink]="['edit', bootcampclasses.bootcampId]">
-    <i class="bi bi-pencil-square"></i>
-    Edit
-  </button>
-</td>
+@if(user?.role === 'Administrator' || user?.role === 'Recruiter'){
+  <td class="table-action">
+    <button class="btn btn-warning m-2" [routerLink]="['edit', bootcampclasses.bootcampId]">
+      <i class="bi bi-pencil-square"></i>
+      Edit
+    </button>
+  </td>
+}

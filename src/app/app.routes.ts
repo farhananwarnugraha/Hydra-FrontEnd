@@ -51,7 +51,7 @@ export const routes: Routes = [
               alert('Please login first');
               router.navigate(['/login']);
             }
-            else if(user.role !== 'Admin' && user.role !=='Recruiter'){
+            else if(user.role === 'Candidate'){
               alert('You are not allowed to access this page');
               router.navigate(['/']);
             }

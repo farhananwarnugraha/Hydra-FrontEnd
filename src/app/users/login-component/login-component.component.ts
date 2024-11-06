@@ -32,7 +32,7 @@ export class LoginComponentComponent {
         next: (userResponse) => {
           // console.log(userResponse);
           // console.log(userResponse.data.role);
-          if(userResponse.data.role === 'Recruiter' || userResponse.data.role === 'Admin'){
+          if(userResponse.data.role !== 'Candidate'){
             Swal.fire({
               position: "center",
               icon: "success",
