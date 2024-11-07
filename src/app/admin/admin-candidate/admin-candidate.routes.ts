@@ -1,6 +1,7 @@
 import { Routes } from "@angular/router";
 import { CandidateListComponent } from "./candidate-list/candidate-list.component";
 import { CandidateFormComponent } from "./candidate-form/candidate-form.component";
+import { CandidateEvaluationComponent } from "./candidate-evaluation/candidate-evaluation.component";
 
 export const adminCandidateRoutes: Routes = [
   {
@@ -14,5 +15,13 @@ export const adminCandidateRoutes: Routes = [
   {
     path: 'edit/:candidateId',
     component: CandidateFormComponent
+  },
+  {
+    path: 'list-candidate',
+    redirectTo: ''
+  },
+  {
+    path: 'evaluation-result',
+    component: CandidateEvaluationComponent
   }
 ];

@@ -1,5 +1,12 @@
 <h2><a [routerLink]="['.']">Candidate</a></h2>
-@if(user?.role !== 'Administrator' || user?.role !== 'Recruiter'){
-  <app-admin-candidate-button></app-admin-candidate-button>
+@if(user?.role !== 'Administrator' && user?.role !== 'Recruiter'){
+  <button class="btn btn-secondary" [routerLink]="['list-candidate']">
+    <i class="bi bi-list"></i>
+    List
+  </button>
+  <button class="btn btn-secondary ms-2" [routerLink]="['evaluation-result']">
+    <i class="bi bi-file-earmark-check-fill"></i>
+    Evaluation Result
+  </button>
 }
 <router-outlet></router-outlet>
