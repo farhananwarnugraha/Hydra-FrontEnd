@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title text-center">Register Here</h4>
-          <form (ngSubmit)="onSubmit()" [formGroup]="form">
+          <form (ngSubmit)="onSubmit()" [formGroup]="formRegister">
             <div class="form-group mb-3">
               <label for="username" class="form-label">Username</label>
               <input
@@ -25,13 +25,13 @@
                 ngModel
                 required
                 class="form-control"
-                formControlName="email"
+                formControlName="emailUser"
               />
             </div>
             <div class="form-group mb-3">
               <label for="role" class="form-label">Role</label>
               <select name="role" id="role" class="form-control" formControlName="role">
-                <option selected="0">Pilih Role Anda</option>
+                <option value="0" selected>Pilih Role Anda</option>
                 <option value="1">Adminstrator</option>
                 <option value="2">Trainer Manager</option>
                 <option value="3">Recruiter Manager</option>
@@ -44,15 +44,11 @@
               <label for="password" class="form-label">Password</label>
               <input
                 type="password"
-                id="password"
-                name="password"
-                ngModel
-                required
                 class="form-control"
                 formControlName="password"
               />
             </div>
-            <button type="submit" class="btn btn-primary w-100" [disabled]="form.invalid">Send</button>
+            <button type="submit" class="btn btn-primary w-100">Register</button>
           </form>
           <p class="text-center">Already have an account? <a [routerLink]="['/login']">Login</a> </p>
         </div>

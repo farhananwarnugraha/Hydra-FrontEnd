@@ -14,3 +14,10 @@ export interface Response<T>{
   status:string;
   data:any;
 }
+
+export interface RegisterCredential{
+  username: string;
+  email: string;
+  password: string;
+  roleIds: number[];
+}

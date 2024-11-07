@@ -3,7 +3,7 @@ import { environment } from '../app.config';
 import { HttpClient } from '@angular/common/http';
 import { JwtService } from './jwt.service';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
-import { InfoUser, LoginCredential, Response } from './users.model';
+import { InfoUser, LoginCredential, RegisterCredential, Response } from './users.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,11 @@ export class AuthService {
   isLoggedIn$ = this.currentUser$.pipe(map(user => user !== null));
 
   constructor(private http: HttpClient,private jwtService: JwtService) { }
+
+  register(credential: RegisterCredential):Observable<Response<string>>{
+    return this.http.post<Response<string>>(`${this._apiUrl}register`, credential);
+  }
+
   login(credential: LoginCredential): Observable<Response<InfoUser>> {
     return this.http.post<Response<InfoUser>>(`${this._apiUrl}login`, credential).pipe(
       tap((user) => {

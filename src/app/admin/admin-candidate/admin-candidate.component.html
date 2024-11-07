@@ -1,2 +1,5 @@
 <h2><a [routerLink]="['.']">Candidate</a></h2>
+@if(user?.role !== 'Administrator' || user?.role !== 'Recruiter'){
+  <app-admin-candidate-button></app-admin-candidate-button>
+}
 <router-outlet></router-outlet>

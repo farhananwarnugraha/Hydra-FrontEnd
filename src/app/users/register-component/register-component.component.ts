@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { RegisterCredential } from '../users.model';
 
 @Component({
   selector: 'app-register-component',
@@ -10,10 +12,42 @@ import { RouterLink } from '@angular/router';
   styleUrl: './register-component.component.css'
 })
 export class RegisterComponentComponent {
-  form = new FormGroup({
+  private _router = inject(Router);
+  private _authService = inject(AuthService);
 
+  formRegister = new FormGroup({
+    username: new FormControl('', {validators: [Validators.required]}),
+    emailUser: new FormControl('', {validators: [Validators.required, Validators.email]}),
+    role: new FormControl('0', {validators: [Validators.required]}),
+    password: new FormControl('', {validators: [Validators.required, Validators.minLength(8)]}),
   });
-  onSubmit(){
 
+  registerForm(): RegisterCredential{
+    const formValue = this.formRegister.value;
+
+    return{
+      username: formValue.username!,
+      email: formValue.emailUser!,
+      password: formValue.password!,
+      roleIds: [parseInt(formValue.role!)]
+    }
   }
+  onSubmit(){
+    console.log(this.registerForm());
+    // console.log(this.formRegister.value);
+    if(this.formRegister.valid){
+      console.log(this.registerForm());
+      this._authService.register(this.registerForm()).subscribe({
+        next: ()=> {
+          alert("Register Success");
+          this._router.navigate(['/login']);
+        },
+        error: () => {
+          alert("Register Failed");
+        }
+      });
+    }else{
+      alert("Please Fill in all the Fields");
+    }
+  };
 }
