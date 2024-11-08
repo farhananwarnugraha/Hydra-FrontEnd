@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { EvauationResult } from '../evaluation-result.model';
 
 @Component({
-  selector: 'app-candidate-evaluation',
+  selector: 'tr[app-candidate-evaluation]',
   standalone: true,
   imports: [],
   templateUrl: './candidate-evaluation.component.html',
   styleUrl: './candidate-evaluation.component.css'
 })
 export class CandidateEvaluationComponent {
-
+  @Input({ required: true }) evaluations!: EvauationResult
+  @Output() deleted = new EventEmitter<void>()
 }

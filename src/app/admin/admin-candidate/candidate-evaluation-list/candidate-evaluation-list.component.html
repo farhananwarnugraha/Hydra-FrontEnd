@@ -1,0 +1,52 @@
+<div class="container rounded shadow p-2">
+  <form>
+    <div class="row">
+      <div class="col">
+        <input type="text"
+        class="form-control"
+        placeholder="Search Full Name">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container p-3 shadow rounded mt-2 overflow-auto">
+  <table class="table table-bordered table-striped table-hover mt-1" app-table-layout [headers]="['Full Name','Course Name', 'Mark', 'Status']">
+    <tbody>
+      @for (evaluation of evaluations; track $index) {
+        <tr app-candidate-evaluation [evaluations]="evaluation" (deleted)="loadEvaluationData()"></tr>
+      }@empty {
+        @if(isLoading){
+          <tr>
+            <td colspan="4" class="text-center">
+              <div class="spinner-border"></div>
+              <p class="text-center">Loading...</p>
+            </td>
+          </tr>
+        }@else {
+          <tr>
+            <td class="message-empty" colspan="4">
+              Not Found Data evaluation
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          <div class="pagination mt-3 justify-content-between">
+            Total Page {{ totalPage }}
+            <ul class="pagination pagination-sm me-4">
+              @for (page of [].constructor(totalPage); track $index; let index = $index) {
+                <li class="page-item">
+                  <a class="page-link">{{ $index + 1 }}</a>
+                </li>
+              }
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

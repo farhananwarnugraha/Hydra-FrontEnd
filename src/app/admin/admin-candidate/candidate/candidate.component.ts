@@ -20,6 +20,4 @@ export class CandidateComponent {
   constructor( private _authService: AuthService) {
     this._authService.currentUser$.subscribe((user) => this.user = user)
   }
-
-  onDelete() {}
 }

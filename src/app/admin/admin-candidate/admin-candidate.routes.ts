@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { CandidateListComponent } from "./candidate-list/candidate-list.component";
 import { CandidateFormComponent } from "./candidate-form/candidate-form.component";
 import { CandidateEvaluationComponent } from "./candidate-evaluation/candidate-evaluation.component";
+import { CandidateEvaluationListComponent } from "./candidate-evaluation-list/candidate-evaluation-list.component";
 
 export const adminCandidateRoutes: Routes = [
   {
@@ -22,6 +23,6 @@ export const adminCandidateRoutes: Routes = [
   },
   {
     path: 'evaluation-result',
-    component: CandidateEvaluationComponent
+    component: CandidateEvaluationListComponent
   }
 ];
