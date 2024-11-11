@@ -12,20 +12,40 @@ export interface bootcampClasses {
   endDate: string
 }
 
-export interface BootcampPlanedList{
-  bootcampId: number,
-  description: string,
-  startDate: string,
-  endDate: string,
-  totalCandidates: number,
-  trainerName: string,
-  courseName: string
-}
-
-
 export interface BootcampForm{
   description: string
   startDate: string
   endDate: string
 }
 
+export interface BootcampPlaned{
+  bootcampId: number,
+  description: string,
+  startDate: string,
+  endDate: string
+  totalCandidate: number
+}
+
+export interface BootcampPlanedList{
+  bootcampsData: BootcampPlaned[],
+  pagination: PaginationResponse
+}
+
+export interface BootcampActive{
+  bootcampId: number,
+  description: string,
+  startDate: string,
+  endDate: string,
+  trainerName: string,
+  courseName: string
+}
+
+export interface BootcampActiveList{
+  bootcampsData: BootcampActive[],
+  pagination: PaginationResponse
+}
+
+export interface BootcampCompleted{
+  bootcampsData: bootcampClasses [],
+  pagination: PaginationResponse
+}

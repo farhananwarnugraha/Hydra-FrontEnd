@@ -4,7 +4,7 @@ import { environment } from '../../app.config';
 import { Params } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import { PageResponse, PageResponseDinamis } from '../../shared/page-response';
-import { BootcampClass, bootcampClasses, BootcampForm, BootcampPlanedList } from './bootcamp.model';
+import { BootcampActiveList, BootcampClass, bootcampClasses, BootcampCompleted, BootcampForm, BootcampPlanedList } from './bootcamp.model';
 
 @Injectable({
   providedIn: 'root'
@@ -54,12 +54,34 @@ export class BootcampService {
     return this._http.get<PageResponseDinamis<bootcampClasses[]>>(`${this._apiBootcamp}All`);
   }
 
-  // deleteBootcamp(bootcampId: number):Observable<bootcampClasses>{
-  //   return this._http.delete<bootcampClasses>(`${this._apiBootcamp}/${bootcampId}`).pipe(
-  //     catchError((error) => {
-  //       console.log(error);
-  //       return throwError(() => 'Kelasalahan System ' + `${error.message}`);
-  //     })
-  //   )
-  // }
+  getBootcampPlaned(params: Params):Observable<PageResponseDinamis<BootcampPlanedList>>{
+    const activedParams = Object.keys({}).reduce<Params>((activeParams, paramName) => {
+      activeParams[paramName] = params[paramName];
+      return activeParams
+    }, {});
+
+    return this._http.get<PageResponseDinamis<BootcampPlanedList>>(this._apiBootcamp+"/planed", {params: activedParams});
+  }
+
+  getBootcampActive(params: Params): Observable<PageResponseDinamis<BootcampActiveList>>{
+    const activedParams = Object.keys({})
+    .reduce<Params>((activeParams, ParamsName) => {
+      activeParams[ParamsName] = params[ParamsName];
+      return activeParams;
+    }, {});
+
+    return this._http.get<PageResponseDinamis<BootcampActiveList>>(this._apiBootcamp+"/active", {
+      params: activedParams
+    });
+  }
+
+  getBootcampCompleted(params: Params):Observable<PageResponseDinamis<BootcampCompleted>>{
+    const activedParams = Object.keys({})
+    .reduce<Params>((activeParams, paramsName) => {
+      activeParams[paramsName] = params[paramsName];
+      return activeParams;
+    }, {});
+
+    return this._http.get<PageResponseDinamis<BootcampCompleted>>(this._apiBootcamp+"/completed", {params: activedParams});
+  }
 }

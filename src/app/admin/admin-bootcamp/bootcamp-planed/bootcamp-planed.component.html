@@ -1,0 +1,13 @@
+<td>{{ bootcampPlanned.bootcampId }}</td>
+<td>{{ bootcampPlanned.description }}</td>
+<td>{{ bootcampPlanned.totalCandidate }}</td>
+<td>{{ bootcampPlanned.startDate }}</td>
+<td>{{ bootcampPlanned.endDate }}</td>
+<td class="table-action">
+  <button class="btn btn-success" [routerLink]="['activeBootcamp']">
+    <i class="bi bi-check"></i>
+  </button>
+  <button class="btn btn-danger">
+    <i class="bi bi-x"></i>
+  </button>
+</td>
