@@ -1,10 +1,11 @@
 <div class="container rounded shadow p-2">
-  <form>
+  <form [formGroup]="evaluationFilterForm">
     <div class="row">
       <div class="col">
         <input type="text"
         class="form-control"
-        placeholder="Search Full Name">
+        placeholder="Search Full Name"
+        formControlName="candidateName">
       </div>
     </div>
   </form>
@@ -36,11 +37,18 @@
       <tr>
         <td colspan="4">
           <div class="pagination mt-3 justify-content-between">
-            Total Page {{ totalPage }}
+            Page {{ evaluationFilterForm.value.pageNumber }} of {{ totalPage }}
             <ul class="pagination pagination-sm me-4">
               @for (page of [].constructor(totalPage); track $index; let index = $index) {
                 <li class="page-item">
-                  <a class="page-link">{{ $index + 1 }}</a>
+                  <a class="page-link"
+                  [class.active]="evaluationFilterForm.value.pageNumber === index + 1"
+                  [routerLink]="['.']"
+                  [queryParams]="{pageNumber: index + 1}"
+                  queryParamsHandling="merge"
+                  >
+                  {{ $index + 1 }}
+                </a>
                 </li>
               }
             </ul>
