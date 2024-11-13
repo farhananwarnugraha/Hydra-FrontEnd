@@ -10,6 +10,6 @@ import { RouterLink } from '@angular/router';
   styleUrl: './bootcamp-planed.component.css'
 })
 export class BootcampPlanedComponent {
-  @Input({required: true}) bootcampPlanned!: BootcampPlaned;
+  @Input({required: true}) bootcampPlanedsData!: BootcampPlaned;
   @Output() deleted = new EventEmitter<void>();
 }

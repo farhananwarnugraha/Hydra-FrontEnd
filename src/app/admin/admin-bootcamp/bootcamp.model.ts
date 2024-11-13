@@ -10,6 +10,7 @@ export interface bootcampClasses {
   description: string
   startDate: string
   endDate: string
+  totalCandidates: number
 }
 
 export interface BootcampForm{
@@ -23,7 +24,7 @@ export interface BootcampPlaned{
   description: string,
   startDate: string,
   endDate: string
-  totalCandidate: number
+  totalCandidates: number
 }
 
 export interface BootcampPlanedList{

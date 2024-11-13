@@ -1,1 +1,26 @@
-<p>bootcamp-planed-list works!</p>
+<div class="container p-2 mb-3 shadow-sm rounded">
+  <form action="">
+    <div class="row">
+      <div class="col">
+        <label for="">Batch Bootcamp</label>
+        <input type="number" class="form-control" min="0">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="container p-3 shadow rounded mt-2">
+  <table class="table table-bordered table-striped table-hover" app-table-layout [headers]="['Batch','Deskripsi', 'Jumlah Kandidat', 'Tanggal Mulai', 'Tanggal Selesai', 'Action']">
+    <tbody>
+      @for (bcp of bootcampPlanedsData; track $index) {
+        <tr app-bootcamp-planed [bootcampPlanedsData]="bcp" (deleted)="_loadBootcampPlaned()"></tr>
+      }@empty {
+        <tr>
+          <td colspan="7" class="text-center">
+            Not Bootcamp Planed
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
