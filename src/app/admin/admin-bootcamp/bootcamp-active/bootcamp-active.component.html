@@ -5,7 +5,7 @@
 <td>{{ bootcampActivesData.trainerName }}</td>
 <td>{{ bootcampActivesData.courseName }}</td>
 <td class="table-action">
-  <button class="btn bg-primary-subtle">
+  <button class="btn bg-primary-subtle" [routerLink]="['detail', bootcampActivesData.bootcampId]">
     <i class="bi bi-pencil-square"></i>
   </button>
 </td>

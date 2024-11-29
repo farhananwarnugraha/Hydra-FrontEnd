@@ -1,0 +1,26 @@
+<td>{{ scheduleBootcampActive.materiBootcamp }}</td>
+<td>{{ scheduleBootcampActive.trainerName }}</td>
+<td>{{ scheduleBootcampActive.startDate }}</td>
+<td>{{ scheduleBootcampActive.endDate }}</td>
+<td>{{ scheduleBootcampActive.status }}</td>
+<td>{{ scheduleBootcampActive.evaluationDate }}</td>
+<td>
+  @if(scheduleBootcampActive.status === 'Active'){
+    <button class="btn btn-warning m-2" (click)="endCourse()">
+      <i class="bi bi-pencil-square"></i>
+    </button>
+  }@else if (scheduleBootcampActive.status === 'Planed')
+  {
+    <button class="btn bg-info-subtle" (click)="startCourse()">
+      <i class="bi bi-play-fill"></i>
+    </button>
+  }@else if (scheduleBootcampActive.status === 'Completed' && scheduleBootcampActive.evaluationDate === "Not Set") {
+    <button class="btn bg-success-subtle" [routerLink]="['evaluation', scheduleBootcampActive.courseId]">
+      <i class="bi bi-file-earmark-bar-graph"></i>
+    </button>
+  }@else{
+    <div class="bg-success rounded p-2">
+      <i class="bi bi-check text-white"></i>
+    </div>
+  }
+</td>

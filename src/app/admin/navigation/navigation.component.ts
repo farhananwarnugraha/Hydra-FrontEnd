@@ -20,6 +20,7 @@ export class NavigationComponent implements OnInit{
   }
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((result) => (this.isAuthenticated = result));
+    console.log(this.isAuthenticated);
     this.authService.currentUser$.subscribe(
       {
         next: (user) => {
@@ -28,6 +29,8 @@ export class NavigationComponent implements OnInit{
             this.role = user.role
           }
           else this.username = null;
+          console.log(this.username);
+
         }
       }
     )

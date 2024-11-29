@@ -22,7 +22,21 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponentComponent
+    component: LoginComponentComponent,
+    canActivate: [
+      () => {
+        const router = inject(Router);
+        return inject(AuthService).isLoggedIn$.pipe(
+          map((isLoggedIn) => {
+            if(isLoggedIn){
+              alert('You are already logged in');
+              router.navigate(['/admin']);
+            }
+            return true
+          })
+        )
+      }
+    ]
   },
   {
     path: 'register',
@@ -45,37 +59,39 @@ export const routes: Routes = [
     canActivate:[
       () => {
         const router = inject(Router);
+        // return inject(AuthService).getCurentUser().pipe(
+        //   map((user) => {
+        //     if(user === null){
+        //       alert('Please login first');
+        //       router.navigate(['/login']);
+        //       // return false
+        //     }
+        //     else if(user.role === 'Candidate'){
+        //       alert('You are not allowed to access this page');
+        //       router.navigate(['/']);
+        //       // return false
+        //     }
+        //     return true
+        //   })
+        // )
         return inject(AuthService).currentUser$.pipe(
           map((user) => {
+            console.log(user);
+
             if(user === null){
               alert('Please login first');
               router.navigate(['/login']);
+              // return false
             }
             else if(user.role === 'Candidate'){
               alert('You are not allowed to access this page');
               router.navigate(['/']);
+              // return false
             }
+            return true
           })
         )
       }
     ]
-    // children:[
-    //   {
-    //     path:'',
-    //     component: DashboardAdminComponent
-    //   },
-    //   {
-    //     path: 'dashboard',
-    //     redirectTo: ''
-    //   },
-    //   {
-    //     path: 'candidte',
-    //   component: CandidateListComponent,
-    //   },
-    //   {
-    //     path: 'bootacamp',
-    //     component: BootcampListComponent
-    //   }
-    // ]
   },
 ];

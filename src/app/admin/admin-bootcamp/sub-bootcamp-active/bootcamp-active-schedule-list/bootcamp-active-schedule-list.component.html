@@ -1,0 +1,19 @@
+<div class="container text-center">
+  <h5>Jadwal Bootcamp {{ bootcampId }}</h5>
+</div>
+
+<div class="container shadow p-2 rounded ms-1">
+  <table class="table table-bordered table-striped table-hover" app-table-layout [headers]="['Materi', 'Trainer', 'Tanggal Mulai', 'Tanggal Selesai', 'Status', 'Tanggal Dinilai', 'Aksi']">
+    <tbody class="text-center">
+      @for (schedule of scheduleBootcampActive; track $index) {
+        <tr app-bootcamp-active-schedule [scheduleBootcampActive]="schedule" (loadSchedule)="loadScheduleCourse()"></tr>
+      }@empty {
+        <tr>
+          <td colspan="7" class="text-center">
+            Not schedule for this Bootcamp
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

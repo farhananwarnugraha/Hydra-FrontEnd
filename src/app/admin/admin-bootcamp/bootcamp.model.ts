@@ -50,3 +50,14 @@ export interface BootcampCompleted{
   bootcampsData: bootcampClasses [],
   pagination: PaginationResponse
 }
+
+// shedule
+export interface ScheduleBootcampActive{
+  courseId: string,
+  materiBootcamp: string,
+  trainerName: string,
+  startDate: string,
+  endDate: string,
+  status: string,
+  evaluationDate: string
+}

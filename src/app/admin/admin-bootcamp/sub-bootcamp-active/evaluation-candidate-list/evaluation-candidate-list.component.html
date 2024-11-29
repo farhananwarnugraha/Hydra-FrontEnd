@@ -1,0 +1,31 @@
+<div class="container text-center">
+  <h5>Input Nilai Botcamp</h5>
+</div>
+
+<div class="container shadow p-2 rounded">
+  <form [formGroup]="evaluationForm" (ngSubmit)="onSubmitEvaluation()">
+    <table class="table table-bordered table-striped table-hover" app-table-layout [headers]="headers">
+      <tbody>
+        <!-- @for (evaluation of candidateEvaluations; track $index) {
+          <tr app-evaluation-candidate [candidates]="evaluation" (loadData)="loadCandidateCourseBootcamp()" [formGroup]="evaluationForm"></tr>
+        } -->
+        <tr *ngFor="let evaluation of candidateEvaluations; let i = index" [formGroupName]="i">
+          <!-- Name (readonly) -->
+          <td>
+            <input type="text" [value]="evaluation.fullName" readonly />
+          </td>
+          <!-- Mark (editable) -->
+          <td>
+            <input
+              type="number"
+              [formControlName]="'mark' + i"
+              min="0"
+              max="100"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-primary">Submit</button>
+  </form>
+</div>

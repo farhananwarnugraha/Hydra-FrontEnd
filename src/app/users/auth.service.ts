@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../app.config';
 import { HttpClient } from '@angular/common/http';
 import { JwtService } from './jwt.service';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap } from 'rxjs';
 import { InfoUser, LoginCredential, RegisterCredential, Response } from './users.model';
 
 @Injectable({
@@ -30,6 +30,10 @@ export class AuthService {
     );
   }
 
+  logOut():void{
+    this.purgeAuth();
+  }
+
   setAuth(user: InfoUser) {
     if (!user) return;
     this._loggedinUserSubject.next(user);
@@ -37,7 +41,24 @@ export class AuthService {
   }
 
   purgeAuth() {
-    this.jwtService.removeToken();
+    this.jwtService.removeToken()
     this._loggedinUserSubject.next(null);
+  }
+
+  getCurentUser(): Observable<Response<InfoUser>>{
+    return this.http.get<Response<InfoUser>>(`${this._apiUrl}getCurrentUser`)
+    .pipe(
+      tap({
+        next: (user) =>{
+          this.setAuth(user.data);
+          // console.log(user.token);
+        },
+        error: () => this.purgeAuth()
+      })
+    );
+    // tap((user) => {
+    //   console.log(user)
+    //   this.setAuth(user)
+    // })
   }
 }

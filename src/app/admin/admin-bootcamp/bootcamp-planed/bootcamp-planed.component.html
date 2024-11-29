@@ -4,10 +4,10 @@
 <td>{{ bootcampPlanedsData.startDate }}</td>
 <td>{{ bootcampPlanedsData.endDate }}</td>
 <td class="table-action">
-  <button class="btn btn-success" [routerLink]="['activeBootcamp']">
+  <button class="btn btn-success" (click)="onStartBootcamp()">
     <i class="bi bi-check"></i>
   </button>
-  <button class="btn btn-danger ms-3">
+  <button class="btn btn-danger ms-3" (click)="onCancelBootcamp()">
     <i class="bi bi-x"></i>
   </button>
 </td>

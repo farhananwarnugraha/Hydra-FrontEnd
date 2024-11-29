@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../app.config';
 import { Params } from '@angular/router';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { PageResponse, PageResponseDinamis } from '../../shared/page-response';
-import { BootcampActiveList, BootcampClass, bootcampClasses, BootcampCompleted, BootcampForm, BootcampPlanedList } from './bootcamp.model';
+import { BootcampActiveList, BootcampClass, bootcampClasses, BootcampCompleted, BootcampForm, BootcampPlanedList, ScheduleBootcampActive } from './bootcamp.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,21 @@ export class BootcampService {
   private _http = inject(HttpClient)
   private _apiBootcamp = `${environment.apiUrl}bootcamp`
   private _apiBootcampCalass = `${environment.apiUrl}bootcampclass`
+  private _apiScheduleBootcamp = `${this._apiBootcampCalass}/course/schedule`
+  // batchBootcamp!: string;
+  private _batchBootcampSubject = new BehaviorSubject<number | null>(null);
+  currentBatch$ = this._batchBootcampSubject.asObservable();
+
+  // get Getbatch(): string{
+  //   return this.batchBootcamp;
+  // }
+
+  // getBatch(): number{
+  //   return this._batchBootcampSubject.subscribe((val) => val)
+  // }
+  setBatch(value : number){
+    this._batchBootcampSubject.next(value);
+  }
 
   getAllBootcampClass(params: Params): Observable<PageResponseDinamis<BootcampClass>>{
     const activedParams = Object.keys(params)
@@ -83,5 +98,20 @@ export class BootcampService {
     }, {});
 
     return this._http.get<PageResponseDinamis<BootcampCompleted>>(this._apiBootcamp+"/completed", {params: activedParams});
+  }
+
+  // get get detail active bootcamp
+
+  // get schedule bootcamp active by bootcamp id
+  getScheduleCourseBootcamp(bootcampId: number): Observable<PageResponseDinamis<ScheduleBootcampActive[]>>{
+    return this._http.get<PageResponseDinamis<ScheduleBootcampActive[]>>(`${this._apiScheduleBootcamp}/${bootcampId}`);
+  }
+
+  activetedBootcamp(bootcampId: number): Observable<PageResponseDinamis<string>>{
+    return this._http.put<PageResponseDinamis<string>>(`${this._apiBootcamp}/activate/${bootcampId}`, {});
+  }
+
+  deadActiveBootcamp(bootcampId: number): Observable<PageResponseDinamis<string>>{
+    return this._http.put<PageResponseDinamis<string>>(`${this._apiBootcamp}/deactivate/${bootcampId}`, {});
   }
 }

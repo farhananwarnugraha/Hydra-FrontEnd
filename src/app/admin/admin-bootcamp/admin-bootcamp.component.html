@@ -1,4 +1,8 @@
-<h2><a [routerLink]="['.']">Bootcamp</a></h2>
+@if(batchBootcamp == null){
+  <h2><a [routerLink]="['.']">Bootcamp</a></h2>
+}@else{
+  <h2><a [routerLink]="['.']">Bootcamp</a>/ {{ batchBootcamp }}</h2>
+}
 @if(user?.role !== 'Administrator' && user?.role !== 'Recruiter'){
   <app-admin-bootcamp-button></app-admin-bootcamp-button>
 }

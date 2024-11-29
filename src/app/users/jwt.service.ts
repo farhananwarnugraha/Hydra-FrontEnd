@@ -4,15 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class JwtService {
-
-  constructor() { }
-
-  getToken():string | null{
-    return window.localStorage['token_access'];
-  }
-
   setToken(token:string):void{
     localStorage.setItem('token_access', token);
+  }
+  getToken():string | null {
+    // var token = localStorage.getItem('token_access');
+    // return token;
+  //  return window.localStorage['token_access'];
+    return window.localStorage['token_access'];
   }
 
   isAuthenticated():boolean{

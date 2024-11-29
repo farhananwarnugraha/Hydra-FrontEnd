@@ -29,7 +29,7 @@ export class HeaderAdminComponent {
           text: "You have been logged out!",
           icon: "success"
         });
-        this._authService.purgeAuth();
+        this._authService.logOut();
         this._router.navigate(['/login']);
       }
     });

@@ -18,6 +18,7 @@ export class BootcampActiveListComponent implements OnInit {
   ngOnInit(): void {
     this._dataUsingFilter();
     this._loadDataFilterForm();
+    // this.batchBootcamp = this._route.snapshot.parent?.paramMap.get('bootcampId')!
   }
   bootcampActivesData!: BootcampActive[];
   totalPages!: number;

@@ -1,0 +1,36 @@
+<div class="container shadow p-2 rounded ms-1 mt-4 custom-stlye">
+  <form [formGroup]="addCourseForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3 d-flex justify-content-lg-start gap-3">
+      <label for="" class="form-label">Batch Bootcamp</label>
+      <input type="number" class="form-control" id="" aria-describedby="emailHelp" readonly formControlName="batchBootcamp">
+    </div>
+    <div class="mb-3 d-flex justify-content-lg-start gap-4">
+      <label for="" class="form-label">Materi</label>
+      <select name="" id="" class="form-control" formControlName="skillId">
+        <option value="" selected>Pilih Materi</option>
+        @for (skill of skills; track $index) {
+          <option value="{{ skill.skillId }}">{{ skill.skillName }}</option>
+        }
+      </select>
+    </div>
+    <div class="mb-3 d-flex justify-content-lg-start gap-3">
+      <label for="" class="form-label">Trainer</label>
+      <select  class="form-control" formControlName="trainerId">
+        <option value=0 selected>Pilih Trainer</option>
+        @for (t of trainer; track $index) {
+          <option [value]=t.trainerId>{{ t.trainerName }}</option>
+        }
+      </select>
+    </div>
+    <div class="mb-3 d-flex justify-content-lg-start gap-3">
+      <label for="" class="form-label">Tanggal Mulai</label>
+      <input type="date" class="form-control" id="" aria-describedby="emailHelp" formControlName="startDate">
+    </div>
+    <div class="mb-3 d-flex justify-content-lg-start gap-3">
+      <label for="" class="form-label">Tanggal Selesai</label>
+      <input type="date" class="form-control" id="" aria-describedby="emailHelp" formControlName="endDate">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+</div>

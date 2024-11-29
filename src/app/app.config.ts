@@ -6,12 +6,14 @@ import { JwtService } from './users/jwt.service';
 import { AuthService } from './users/auth.service';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { jwtInterceptor } from './users/jwt.interceptor';
+import { EMPTY } from 'rxjs';
 
 export function initAuth(){
   const jwtService = inject(JwtService);
   const  authService = inject(AuthService);
-  return () => (jwtService.getToken())
+  return () => (jwtService.getToken() ? authService.getCurentUser() : EMPTY);
 }
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
