@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../app.config';
 import { catchError, Observable, throwError } from 'rxjs';
 import { PageResponseDinamis } from '../../../shared/page-response';
-import { CandidateCourseBootcamp, CourseForm, EndBootcampClass, Skill, Trainer } from './sub-bootcamp.mode';
+import { CandidateCourseBootcamp, CandidateEvaluationForm, CourseForm, EndBootcampClass, Skill, Trainer } from './sub-bootcamp.mode';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,15 @@ export class SubBootcampService {
     return this._http.put<PageResponseDinamis<string>>(`${this._apiUrl}bootcampclass/course/${courseId}`, {});
   }
 
+  updateCourseEvaluationDate(courseId: string):Observable<PageResponseDinamis<string>>{
+    return this._http.put<PageResponseDinamis<string>>(`${this._apiUrl}bootcampclass/course-evaluation/${courseId}`, {});
+  }
+
   getCandidateByCourseBootcamp(courseId: string, bootcampId: number):Observable<PageResponseDinamis<CandidateCourseBootcamp[]>>{
     return this._http.get<PageResponseDinamis<CandidateCourseBootcamp[]>>(`${this._apiUrl}candidates/${courseId}/${bootcampId}`);
+  }
+
+  addCandidateEvaluation(evaluationData: CandidateEvaluationForm):Observable<PageResponseDinamis<string>>{
+    return this._http.post<PageResponseDinamis<string>>(`${this._apiUrl}add-evaluation`, evaluationData);
   }
 }

@@ -29,3 +29,9 @@ export interface CandidateCourseBootcamp{
   candidateId: number,
   fullName: string
 }
+
+export interface CandidateEvaluationForm{
+  courseId: string,
+  candidateId: number,
+  note?: string
+}

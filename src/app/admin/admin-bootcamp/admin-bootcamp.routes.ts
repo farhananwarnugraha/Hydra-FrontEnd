@@ -40,13 +40,9 @@ export const adminBootcampRoutes: Routes = [
         component: SubBootcampActiveComponent,
         children: [
           {
-            path: '',
+            path: 'jadwal',
             component: BootcampActiveScheduleListComponent,
 
-          },
-          {
-            path: 'schdule',
-            redirectTo: ''
           },
           {
             path: 'add-course',

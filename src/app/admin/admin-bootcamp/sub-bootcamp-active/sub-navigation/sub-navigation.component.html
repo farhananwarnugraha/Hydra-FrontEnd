@@ -1,13 +1,16 @@
 <div class="container-fluid bg-secondary custom-stlye">
-  <ul class="p-4">
-    <li>
-      <a [routerLink]="['.']">Jadwal</a>
+  <ul class="text-center p-4">
+    <li class="fw-bold">
+      <a [routerLink]="['jadwal']" routerLinkActive="active">Jadwal</a>
     </li>
-    <li>
-      <a [routerLink]="['add-course']">Menambahkan Materi</a>
+    <hr>
+    <li class="fw-bold">
+      <a [routerLink]="['add-course']" routerLinkActive="active">Menambahkan Materi</a>
     </li>
-    <li>
-      <a [routerLink]="['end-class']">Menyelesaikan Kelas</a>
+    <hr>
+    <li class="fw-bold">
+      <a [routerLink]="['end-class']" routerLinkActive="active">Menyelesaikan Kelas</a>
     </li>
+    <hr>
   </ul>
 </div>

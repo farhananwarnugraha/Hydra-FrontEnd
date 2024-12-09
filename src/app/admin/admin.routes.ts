@@ -8,13 +8,10 @@ import { map } from "rxjs";
 
 export const adminRoutes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardAdminComponent
   },
-  {
-    path: 'dashboard',
-    redirectTo: ''
-  },
+
   {
     path: 'bootcamps',
     component: AdminBootcampComponent,

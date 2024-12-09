@@ -4,3 +4,27 @@
   margin-top: 30px;
   margin-right: 10px;
 }
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  color: burlywood;
+}
+
+ul{
+  list-style-type: none;
+}
+ hr{
+  margin: 1rem -35px;
+  color: #fff;
+  border: 0;
+  border-top: var(--bs-border-width) solid;
+  opacity: .25;
+ }
+
+ .active{
+  color: burlywood;
+ }

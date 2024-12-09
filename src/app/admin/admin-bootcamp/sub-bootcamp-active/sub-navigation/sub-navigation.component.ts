@@ -4,7 +4,7 @@ import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-sub-navigation',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './sub-navigation.component.html',
   styleUrl: './sub-navigation.component.css'
 })

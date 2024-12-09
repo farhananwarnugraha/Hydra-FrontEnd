@@ -14,5 +14,10 @@ a{
   color: black;
 }
 li:hover{
-  background-color: lightgray;
+  background-color: lightgray
 }
+.active{
+  background-color: lightgray;
+  color: black;
+}
+

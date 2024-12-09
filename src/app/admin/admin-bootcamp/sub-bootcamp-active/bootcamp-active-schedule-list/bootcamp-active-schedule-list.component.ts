@@ -25,7 +25,7 @@ export class BootcampActiveScheduleListComponent implements OnInit {
   }
 
   loadScheduleCourse(){
-    this.bootcampId = parseInt(this._route.snapshot.paramMap.get('bootcampId')?.toString()!);
+    this.bootcampId = parseInt(this._route.snapshot.parent?.paramMap.get('bootcampId')?.toString()!);
     this._bootcampService.getScheduleCourseBootcamp(this.bootcampId).subscribe((result) => {
       this.scheduleBootcampActive = result.data
     })

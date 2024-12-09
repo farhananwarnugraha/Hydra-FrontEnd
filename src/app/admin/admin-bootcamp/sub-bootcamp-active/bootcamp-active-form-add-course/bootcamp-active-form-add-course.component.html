@@ -1,36 +1,38 @@
-<div class="container shadow p-2 rounded ms-1 mt-4 custom-stlye">
-  <form [formGroup]="addCourseForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3 d-flex justify-content-lg-start gap-3">
-      <label for="" class="form-label">Batch Bootcamp</label>
-      <input type="number" class="form-control" id="" aria-describedby="emailHelp" readonly formControlName="batchBootcamp">
-    </div>
-    <div class="mb-3 d-flex justify-content-lg-start gap-4">
-      <label for="" class="form-label">Materi</label>
-      <select name="" id="" class="form-control" formControlName="skillId">
-        <option value="" selected>Pilih Materi</option>
-        @for (skill of skills; track $index) {
-          <option value="{{ skill.skillId }}">{{ skill.skillName }}</option>
-        }
-      </select>
-    </div>
-    <div class="mb-3 d-flex justify-content-lg-start gap-3">
-      <label for="" class="form-label">Trainer</label>
-      <select  class="form-control" formControlName="trainerId">
-        <option value=0 selected>Pilih Trainer</option>
-        @for (t of trainer; track $index) {
-          <option [value]=t.trainerId>{{ t.trainerName }}</option>
-        }
-      </select>
-    </div>
-    <div class="mb-3 d-flex justify-content-lg-start gap-3">
-      <label for="" class="form-label">Tanggal Mulai</label>
-      <input type="date" class="form-control" id="" aria-describedby="emailHelp" formControlName="startDate">
-    </div>
-    <div class="mb-3 d-flex justify-content-lg-start gap-3">
-      <label for="" class="form-label">Tanggal Selesai</label>
-      <input type="date" class="form-control" id="" aria-describedby="emailHelp" formControlName="endDate">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-
-  </form>
+<div>
+  <h5 class="text-center">Tambah Materi Bootcamp {{ this.bootcampId }}</h5>
+  <div class="container shadow p-2 rounded ms-1 mt-4 custom-stlye">
+    <form [formGroup]="addCourseForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3 d-flex justify-content-lg-start gap-3">
+        <label for="batchBootcamp" class="form-label">Batch Bootcamp</label>
+        <input type="number" class="form-control" id="batchBootcamp" aria-describedby="emailHelp" readonly formControlName="batchBootcamp">
+      </div>
+      <div class="mb-3 d-flex justify-content-lg-start gap-4">
+        <label for="skillId" class="form-label">Materi</label>
+        <select id="skillId" class="form-control" formControlName="skillId">
+          <option value="" selected>Pilih Materi</option>
+          @for (skill of skills; track $index) {
+            <option value="{{ skill.skillId }}">{{ skill.skillName }}</option>
+          }
+        </select>
+      </div>
+      <div class="mb-3 d-flex justify-content-lg-start gap-3">
+        <label for="trainerId" class="form-label">Trainer</label>
+        <select  id="trainerId" class="form-control" formControlName="trainerId">
+          <option value=0 selected>Pilih Trainer</option>
+          @for (t of trainer; track $index) {
+            <option [value]=t.trainerId>{{ t.trainerName }}</option>
+          }
+        </select>
+      </div>
+      <div class="mb-3 d-flex justify-content-lg-start gap-3">
+        <label for="startDate" class="form-label">Tanggal Mulai</label>
+        <input type="date" class="form-control" id="startDate" aria-describedby="date" formControlName="startDate">
+      </div>
+      <div class="mb-3 d-flex justify-content-lg-start gap-3">
+        <label for="endDate" class="form-label">Tanggal Selesai</label>
+        <input type="date" class="form-control" id="endDate" aria-describedby="end-date" formControlName="endDate">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </div>

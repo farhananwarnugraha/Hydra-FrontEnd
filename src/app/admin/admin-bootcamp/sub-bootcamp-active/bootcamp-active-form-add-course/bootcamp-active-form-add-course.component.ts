@@ -30,7 +30,6 @@ export class BootcampActiveFormAddCourseComponent implements OnInit{
     endDate: new FormControl<string>('', {validators: Validators.required})
   });
   ngOnInit(): void {
-    console.log(this._route.snapshot.parent?.params['bootcampId']);
     this.bootcampId = parseInt(this._route.snapshot.parent?.params['bootcampId']?.toString()!);
     this.subBootcampService.getAllTrainer().subscribe((response) => this.trainer = response.data)
     this.subBootcampService.getSkills().subscribe((response) => this.skills = response.data)
@@ -45,9 +44,8 @@ export class BootcampActiveFormAddCourseComponent implements OnInit{
 
   onSubmit(){
     console.log(this.addCourseForm.value);
-
     this._addCourse();
-}
+  }
 
   private _addCourse(){
     this.subBootcampService.addCourseBootcamp(this.bootcampId, this.addCourseForm.value as CourseForm).subscribe({
